@@ -1,57 +1,70 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
+import "../css/Auth.css";
 
 const Login = (props) => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
 
   const { setUser } = props;
 
-  const onFormSubmit = async (event) => {
+  const onFormSubmit = (event) => {
     event.preventDefault();
-    await Axios.post("/login", {
+    Axios.post("/login", {
       email,
       password,
     })
-      .then((response) => {
-        localStorage.setItem("loggedInUser", JSON.stringify(response.data));
-        setUser(response.data.user);
+      .then(({ data }) => {
+        localStorage.setItem("loggedInUser", JSON.stringify(data));
+        setUser(data.user);
         history.push("/");
       })
       .catch((error) => {
         console.error(error.response.data);
+        setErrorMessage(error.response.data);
       });
   };
 
   return (
-    <div>
+    <div className={"login-form"}>
       <form>
-        <input
-          type={"email"}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-          placeholder={"Enter your email"}
-          value={email}
-        />
-        <input
-          type={"password"}
-          onChange={(event) => {
-            setPassword(event.target.value);
-          }}
-          placeholder={"Enter your password"}
-          value={password}
-        />
-        <button
-          onClick={(event) => {
-            onFormSubmit(event);
-          }}
-        >
-          Login
-        </button>
+        <div className={"uk-margin"}>
+          <input
+            className={"uk-input uk-form-width-large"}
+            type={"email"}
+            placeholder={"Enter your email"}
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+            value={email}
+          />
+        </div>
+        <div className={"uk-margin"}>
+          <input
+            className={"uk-input uk-form-width-large"}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+            type={"password"}
+            placeholder={"Enter your password"}
+            value={password}
+          />
+        </div>
+        <div className={"uk-margin"}>
+          <button
+            className={"login-button"}
+            onClick={(event) => {
+              onFormSubmit(event);
+            }}
+          >
+            Login
+          </button>
+        </div>
       </form>
+      <h5 className={"error-mssg"}>{errorMessage}</h5>
     </div>
   );
 };

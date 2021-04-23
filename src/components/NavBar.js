@@ -17,11 +17,11 @@ const NavBar = (props) => {
     return (
       <>
         <li>
-          <a>{`Hi, ${user.name}`}</a>
+          <a>{`Hi, ${user.name.split(" ")[0]}`}</a>
         </li>
         <li>
           <a
-            onClick={(event) => {
+            onClick={() => {
               localStorage.clear();
               setUser(null);
             }}

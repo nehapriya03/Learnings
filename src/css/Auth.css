@@ -1,0 +1,20 @@
+.login-form {
+  background-color: black;
+  text-align: center;
+  height: calc(65vh - 80px);
+  padding: 35vh 10% 0 10%;
+}
+
+.login-button {
+  background-color: white;
+  padding: 10px 20px;
+  font-family: "Open Sans";
+  border: none;
+  border-radius: 8px;
+}
+
+.error-mssg {
+  color: #fb5a5a;
+  background: #350404;
+  margin: 0 30%;
+}

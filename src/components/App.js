@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
-import NavBar from "./NavBar";
-import HomePage from "./HomePage";
-import AboutUs from "./AboutUs";
-import SignUp from "./SignUp";
-import Login from "./Login";
+const NavBar = React.lazy(() => import("./NavBar"));
+const HomePage = React.lazy(() => import("./HomePage"));
+const AboutUs = React.lazy(() => import("./AboutUs"));
+const SignUp = React.lazy(() => import("./SignUp"));
+const Login = React.lazy(() => import("./Login"));
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [selectedNav, setSelectedNav] = useState("HOME");
+
+  useEffect(() => {
+    let loggedInUser = localStorage.getItem("loggedInUser");
+    if (user === null && loggedInUser) {
+      setUser(JSON.parse(loggedInUser).user);
+    }
+  }, [user]);
 
   return (
     <Router>
@@ -25,7 +32,7 @@ const App = () => {
           <Route path={"/sign-up"} component={SignUp} />
           <Route
             path={"/login"}
-            component={() => <Login user={user} setUser={setUser} />}
+            component={() => <Login setUser={setUser} />}
           />
           <Redirect to={"/"} />
         </React.Suspense>
