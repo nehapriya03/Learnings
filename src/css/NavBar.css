@@ -1,0 +1,30 @@
+.navbar-cont {
+  background-color: black;
+  padding: 0 10%;
+}
+
+.navbar {
+  justify-content: flex-end;
+}
+
+.logo-image-box {
+  position: absolute;
+  left: 0;
+}
+
+.logo-image-box img.logo-img {
+  width: 50px;
+}
+
+.search-box-div {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  width: 40%;
+}
+
+.search-box::placeholder {
+  text-align: center;
+}
