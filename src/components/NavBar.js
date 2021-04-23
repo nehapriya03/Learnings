@@ -4,22 +4,32 @@ import "../css/NavBar.css";
 import philozooic from "../assets/philozooic.png";
 
 const NavBar = (props) => {
-  const { user } = props;
+  const { user, setUser, selectedNav, setSelectedNav } = props;
 
   const showAuthPart = () => {
     if (user === null || user === undefined) {
       return (
         <li>
-          <Link to={"/login"}>
-            <a>Login</a>
-          </Link>
+          <Link to={"/login"}>Login</Link>
         </li>
       );
     }
     return (
-      <li>
-        <a>{`Hi, ${user.name}`}</a>
-      </li>
+      <>
+        <li>
+          <a>{`Hi, ${user.name}`}</a>
+        </li>
+        <li>
+          <a
+            onClick={(event) => {
+              localStorage.clear();
+              setUser(null);
+            }}
+          >
+            Logout
+          </a>
+        </li>
+      </>
     );
   };
 
@@ -31,14 +41,16 @@ const NavBar = (props) => {
         }
       >
         <nav className={"uk-navbar-container"}>
-          <div className={"uk-container uk-container-expand"} className={"navbar-cont"}>
+          <div className={"uk-container uk-container-expand navbar-cont"}>
             <div uk-navbar={""} className={"navbar"}>
               <div className={"uk-navbar-item logo-image-box"}>
-                <img
-                  src={philozooic}
-                  className={"logo-img"}
-                  alt={"Philozooic Logo"}
-                />
+                <Link to={"/"}>
+                  <img
+                    src={philozooic}
+                    className={"logo-img"}
+                    alt={"Philozooic Logo"}
+                  />
+                </Link>
               </div>
               <div className={"uk-navbar-item search-box-div"}>
                 <form className={"uk-search uk-search-navbar"}>
@@ -51,12 +63,17 @@ const NavBar = (props) => {
                 </form>
               </div>
               <ul className={"uk-navbar-nav"}>
-                {showAuthPart()}
-                <li>
-                  <Link to={"/about-us"}>
-                    <a>About Us</a>
+                <li
+                  className={`${selectedNav === "ABOUT" ? "uk-active" : null}`}
+                >
+                  <Link
+                    to={"/about-us"}
+                    onClick={() => setSelectedNav("ABOUT")}
+                  >
+                    About Us
                   </Link>
                 </li>
+                {showAuthPart()}
               </ul>
             </div>
           </div>
