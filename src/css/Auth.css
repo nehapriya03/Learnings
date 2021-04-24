@@ -18,8 +18,27 @@
   border-radius: 8px;
 }
 
+.signup-mssg {
+  color: #fff;
+  font-size: small;
+}
+
 .error-mssg {
   color: #fb5a5a;
   background: #350404;
   margin: 0 30%;
+}
+
+a.signup-link {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+  background-color: rgb(16, 24, 139);
+  padding: 10px 20px;
+  font-size: small;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+a.signup-link:hover {
+  background-color: rgb(7, 14, 109);
 }

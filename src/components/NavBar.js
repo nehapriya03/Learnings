@@ -17,9 +17,11 @@ const NavBar = (props) => {
     return (
       <>
         <li>
+          {/* eslint-disable-next-line */}
           <a>{`Hi, ${user.name.split(" ")[0]}`}</a>
         </li>
         <li>
+          {/* eslint-disable-next-line */}
           <a
             onClick={() => {
               localStorage.clear();
@@ -33,50 +35,96 @@ const NavBar = (props) => {
     );
   };
 
+  // const SearchBar = () => {
+  //   return (
+  //     <div className={"uk-navbar-item search-box-div"}>
+  //       <form className={"uk-search uk-search-navbar"}>
+  //         <span uk-search-icon={""}></span>
+  //         <input
+  //           className={"uk-search-input search-box"}
+  //           type={"search"}
+  //           placeholder={"Search"}
+  //         />
+  //       </form>
+  //     </div>
+  //   );
+  // };
+
   return (
-    <div
-      className={"uk-section-primary uk-preserve-color"}
-      style={{ backgroundColor: "black" }}
-    >
+    <>
+      {/* Phone Nav */}
       <div
         uk-sticky={
           "animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200"
         }
       >
-        <nav className={"uk-navbar-container"}>
-          <div className={"uk-container uk-container-expand navbar-cont"}>
-            <div uk-navbar={""} className={"navbar"}>
-              <div className={"uk-navbar-item logo-image-box"}>
-                <Link to={"/"}>
-                  <img
-                    src={philozooic}
-                    className={"logo-img"}
-                    alt={"Philozooic Logo"}
-                  />
-                </Link>
-                <h6 className={"company-name"}>Philozooic</h6>
+        <nav className={"uk-navbar uk-navbar-container uk-margin phone-nav"}>
+          <div className={"uk-navbar-left"}>
+            {/* eslint-disable-next-line */}
+            <a className={"uk-navbar-toggle"} href="#">
+              <span uk-navbar-toggle-icon={""} />
+              <div uk-dropdown={"mode: click"}>
+                <ul className={"uk-nav uk-dropdown-nav"}>
+                  <li>
+                    <Link to={"/about-us"}>About Us</Link>
+                  </li>
+                  {showAuthPart()}
+                </ul>
               </div>
-              {/* <div className={"uk-navbar-item search-box-div"}>
-                <form className={"uk-search uk-search-navbar"}>
-                  <span uk-search-icon={""}></span>
-                  <input
-                    className={"uk-search-input search-box"}
-                    type={"search"}
-                    placeholder={"Search"}
-                  />
-                </form>
-              </div> */}
-              <ul className={"uk-navbar-nav"}>
-                <li>
-                  <Link to={"/about-us"}>About Us</Link>
-                </li>
-                {showAuthPart()}
-              </ul>
+            </a>
+          </div>
+          <div className={"uk-navbar-right"}>
+            <div className={"uk-navbar-item phone-nav-logo-box"}>
+              <Link to={"/"}>
+                <img
+                  src={philozooic}
+                  className={"logo-img"}
+                  alt={"Philozooic Logo"}
+                />
+              </Link>
             </div>
           </div>
         </nav>
       </div>
-    </div>
+      {/* Phone Nav Ends */}
+
+      {/* Desktop Nav */}
+      <div
+        className={"uk-section-primary uk-preserve-color desktop-nav"}
+        style={{ backgroundColor: "black" }}
+      >
+        <div
+          uk-sticky={
+            "animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200"
+          }
+        >
+          <nav className={"uk-navbar-container"}>
+            <div className={"uk-container uk-container-expand navbar-cont"}>
+              <div uk-navbar={""} className={"navbar"}>
+                <div className={"uk-navbar-item logo-image-box"}>
+                  <Link to={"/"}>
+                    <img
+                      src={philozooic}
+                      className={"logo-img"}
+                      alt={"Philozooic Logo"}
+                    />
+                  </Link>
+                  <h6 className={"company-name"}>Philozooic</h6>
+                </div>
+
+                <ul className={"uk-navbar-nav"}>
+                  <li>
+                    <Link to={"/about-us"}>About Us</Link>
+                  </li>
+                  {showAuthPart()}
+                </ul>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      {/* Desktop Nav Ends */}
+    </>
   );
 };
 

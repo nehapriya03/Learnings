@@ -43,3 +43,23 @@
 .search-box::placeholder {
   text-align: center;
 }
+
+.phone-nav {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .phone-nav {
+    background-color: black !important;
+    margin-bottom: 0;
+    display: flex;
+  }
+
+  .phone-nav .phone-nav-logo-box img.logo-img {
+    width: 50px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+}

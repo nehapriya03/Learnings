@@ -37,6 +37,10 @@ const App = () => {
               path={"/login"}
               component={() => <Login setUser={setUser} />}
             />
+            <Route
+              path={"/signup"}
+              component={() => <SignUp setUser={setUser} />}
+            />
             <Route path={"/doctor"} component={DoctorPage} />
             <Route path={"/caretaker"} component={CaretakerPage} />
             <Route path={"/date-mate"} component={DateAndMatePage} />

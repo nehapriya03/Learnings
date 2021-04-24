@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { LoginAPI } from "../apis/Login";
+import { Link } from "react-router-dom";
+import { LoginAPI } from "../apis/Auth";
 import { useHistory } from "react-router-dom";
 import "../css/Auth.css";
 
@@ -51,6 +52,9 @@ const Login = (props) => {
             value={password}
           />
         </div>
+        <h4 className={"signup-mssg"}>
+          Don't have an account? <Link className={"signup-link"} to="/signup">SignUp</Link>
+        </h4>
         <div className={"uk-margin"}>
           <button
             className={"login-button"}

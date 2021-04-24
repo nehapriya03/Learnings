@@ -18,7 +18,7 @@ import date3 from "../assets/date3.jpg";
 import date4 from "../assets/date4.jpg";
 import date5 from "../assets/date5.jpg";
 
-const veterinaryDoctorImages = [doc1, doc2, doc3];
+const veterinaryDoctorImages = [doc1, doc2, doc3, doc4];
 const caretakerImages = [care1, care2, care3, care4];
 const dateAndMateImages = [date1, date2, date3, date4, date5];
 
@@ -247,7 +247,6 @@ const HomePage = () => {
                 className={
                   "uk-position-center-left uk-position-small uk-hidden-hover"
                 }
-                href="#"
                 uk-slidenav-previous={""}
                 uk-slideshow-item={"previous"}
               />
@@ -255,7 +254,6 @@ const HomePage = () => {
                 className={
                   "uk-position-center-right uk-position-small uk-hidden-hover"
                 }
-                href="#"
                 uk-slidenav-next={""}
                 uk-slideshow-item={"next"}
               />
