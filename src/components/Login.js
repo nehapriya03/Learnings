@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import { LoginAPI } from "../apis/Login";
 import { useHistory } from "react-router-dom";
 import "../css/Auth.css";
 
@@ -13,10 +13,7 @@ const Login = (props) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    Axios.post("/login", {
-      email,
-      password,
-    })
+    LoginAPI(email, password)
       .then(({ data }) => {
         localStorage.setItem("loggedInUser", JSON.stringify(data));
         setUser(data.user);
@@ -31,6 +28,7 @@ const Login = (props) => {
   return (
     <div className={"login-form"}>
       <form>
+        <h1 className={"login-text"}>Login to Philozooic</h1>
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}

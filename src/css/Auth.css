@@ -5,6 +5,11 @@
   padding: 35vh 10% 0 10%;
 }
 
+.login-text {
+  font-family: "Coming Soon";
+  color: white;
+}
+
 .login-button {
   background-color: white;
   padding: 10px 20px;

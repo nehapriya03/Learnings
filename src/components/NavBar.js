@@ -4,7 +4,7 @@ import "../css/NavBar.css";
 import philozooic from "../assets/philozooic.png";
 
 const NavBar = (props) => {
-  const { user, setUser, selectedNav, setSelectedNav } = props;
+  const { user, setUser } = props;
 
   const showAuthPart = () => {
     if (user === null || user === undefined) {
@@ -34,7 +34,10 @@ const NavBar = (props) => {
   };
 
   return (
-    <div className={"uk-section-primary uk-preserve-color"}>
+    <div
+      className={"uk-section-primary uk-preserve-color"}
+      style={{ backgroundColor: "black" }}
+    >
       <div
         uk-sticky={
           "animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 200"
@@ -51,8 +54,9 @@ const NavBar = (props) => {
                     alt={"Philozooic Logo"}
                   />
                 </Link>
+                <h6 className={"company-name"}>Philozooic</h6>
               </div>
-              <div className={"uk-navbar-item search-box-div"}>
+              {/* <div className={"uk-navbar-item search-box-div"}>
                 <form className={"uk-search uk-search-navbar"}>
                   <span uk-search-icon={""}></span>
                   <input
@@ -61,17 +65,10 @@ const NavBar = (props) => {
                     placeholder={"Search"}
                   />
                 </form>
-              </div>
+              </div> */}
               <ul className={"uk-navbar-nav"}>
-                <li
-                  className={`${selectedNav === "ABOUT" ? "uk-active" : null}`}
-                >
-                  <Link
-                    to={"/about-us"}
-                    onClick={() => setSelectedNav("ABOUT")}
-                  >
-                    About Us
-                  </Link>
+                <li>
+                  <Link to={"/about-us"}>About Us</Link>
                 </li>
                 {showAuthPart()}
               </ul>

@@ -12,6 +12,21 @@
   left: 0;
 }
 
+.logo-image-box h6.company-name {
+  color: #999;
+  margin: auto;
+  margin-left: 1vw;
+  margin-top: auto;
+  font-family: "Coming Soon";
+  font-size: 20px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.logo-image-box h6.company-name:hover {
+  color: #fff;
+}
+
 .logo-image-box img.logo-img {
   width: 65px;
 }
