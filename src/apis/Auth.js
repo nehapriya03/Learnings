@@ -7,20 +7,6 @@ export const LoginAPI = async (email, password) => {
   });
 };
 
-export const SignUpAPI = async (
-  email,
-  name,
-  password,
-  phoneNumber,
-  userType,
-  gender
-) => {
-  return await Axios.post("/signup", {
-    email,
-    name,
-    password,
-    phoneNumber,
-    userType,
-    gender,
-  });
+export const SignUpAPI = async (user) => {
+  return await Axios.post("/signup", user);
 };

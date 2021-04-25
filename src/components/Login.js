@@ -14,16 +14,20 @@ const Login = (props) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    LoginAPI(email, password)
-      .then(({ data }) => {
-        localStorage.setItem("loggedInUser", JSON.stringify(data));
-        setUser(data.user);
-        history.push("/");
-      })
-      .catch((error) => {
-        console.error(error.response.data);
-        setErrorMessage(error.response.data);
-      });
+    if (email === "" || password === "") {
+      setErrorMessage("Please fill in your credentials");
+    } else {
+      LoginAPI(email, password)
+        .then(({ data }) => {
+          localStorage.setItem("loggedInUser", JSON.stringify(data));
+          setUser(data.user);
+          history.push("/");
+        })
+        .catch((error) => {
+          console.error(error.response.data);
+          setErrorMessage(error.response.data);
+        });
+    }
   };
 
   return (
@@ -53,7 +57,10 @@ const Login = (props) => {
           />
         </div>
         <h4 className={"signup-mssg"}>
-          Don't have an account? <Link className={"signup-link"} to="/signup">SignUp</Link>
+          Don't have an account?{" "}
+          <Link className={"signup-link"} to="/signup">
+            SignUp
+          </Link>
         </h4>
         <div className={"uk-margin"}>
           <button

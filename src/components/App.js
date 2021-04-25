@@ -39,7 +39,7 @@ const App = () => {
             />
             <Route
               path={"/signup"}
-              component={() => <SignUp setUser={setUser} />}
+              component={() => <SignUp setUser={setUser} user={user} />}
             />
             <Route path={"/doctor"} component={DoctorPage} />
             <Route path={"/caretaker"} component={CaretakerPage} />
