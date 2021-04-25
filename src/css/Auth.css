@@ -1,8 +1,8 @@
 .login-form {
   background-color: black;
   text-align: center;
-  height: calc(65vh - 80px);
-  padding: 35vh 10% 0 10%;
+  min-height: 55vh;
+  padding: 35vh 10% 10vh 10%;
 }
 
 .login-text {
@@ -41,4 +41,17 @@ a.signup-link {
 
 a.signup-link:hover {
   background-color: rgb(7, 14, 109);
+}
+
+.radio-section {
+  justify-content: center;
+}
+
+h4.radio-select {
+  color: #fff;
+  font-style: italic;
+}
+
+.radio-section > label {
+  color: #fff;
 }

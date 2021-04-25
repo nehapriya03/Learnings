@@ -1,58 +1,61 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { AddDoctorAPI } from "../apis/Doctor";
+import { AddNGOAPI } from "../apis/NGO";
 import { UpdateUserById } from "../apis/User";
 
-const DoctorRegistrationForm = (props) => {
+const NGORegistrationForm = (props) => {
   const { user, setUser, setFormType } = props;
-  let userNameArray = user === null ? null : user.name.split(" ");
 
-  const [firstName, setFirstName] = useState(
-    userNameArray === null ? "" : userNameArray[0]
-  );
-  const [lastName, setLastName] = useState(
-    userNameArray === null ? "" : userNameArray[1]
-  );
-  const [location, setLocation] = useState("");
-  const [specialty, setSpecialty] = useState("");
-  const [charge, setCharge] = useState("");
-  const [chargeDuration, setChargeDuration] = useState("");
+  let userName = user === null ? "" : user.name;
+  let userPhone = user === null ? "" : user.phoneNumber;
+
+  const [name, setName] = useState(userName);
+  const [phoneNumber, setPhoneNumber] = useState(userPhone);
   const [about, setAbout] = useState("");
+  const [location, setLocation] = useState("");
+  const [address, setAddress] = useState("");
+  const [upiId, setUpiId] = useState("");
+  const [bankIFSC, setBankIFSC] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const history = useHistory();
 
   const handleSubmitClick = async (e) => {
     if (
-      firstName === "" ||
-      lastName === "" ||
+      name === "" ||
+      phoneNumber === "" ||
       location === "" ||
-      specialty === "" ||
-      charge === "" ||
-      about === ""
+      address === "" ||
+      about === "" ||
+      upiId === "" ||
+      bankIFSC === "" ||
+      accountNumber === ""
     ) {
       setErrorMessage("Please fill all required fields.");
     }
     e.preventDefault();
-    let doctor = {
-      firstName,
-      lastName,
-      location,
-      specialty,
-      charge,
-      chargeDuration,
+    let ngo = {
+      name,
+      phoneNumber,
       about,
+      location,
+      address,
+      upiId,
+      bankIFSC,
+      accountNumber,
+      errorMessage,
     };
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    await AddDoctorAPI(doctor)
-      .then(async ({ data: createdDoctor }) => {
-        loggedInUser = { ...loggedInUser, targetUser: createdDoctor };
+    await AddNGOAPI(ngo)
+      .then(async ({ data: createdNGO }) => {
+        loggedInUser = { ...loggedInUser, targetUser: createdNGO };
         await UpdateUserById(
           user.userId,
           {
             ...user,
-            targetUser: "Doctor",
-            targetUserId: createdDoctor.doctorId,
+            targetUser: "Caretaker",
+            targetUserId: createdNGO.ngoId,
           },
           loggedInUser.token
         )
@@ -65,7 +68,7 @@ const DoctorRegistrationForm = (props) => {
           });
       })
       .catch((error) => {
-        console.error("Could not create doctor", error);
+        console.error("Could not create caretaker", error);
       });
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     history.push("/");
@@ -74,7 +77,7 @@ const DoctorRegistrationForm = (props) => {
   return (
     <>
       <div className={"login-form"}>
-        <h1 className={"login-text"}>Pets would love our new vet.</h1>
+        <h1 className={"login-text"}>Animals love your contribution.</h1>
         <h4 className={"radio-select"}>
           Please provide your additional details:
         </h4>
@@ -82,18 +85,27 @@ const DoctorRegistrationForm = (props) => {
           <input
             className={"uk-input uk-form-width-large"}
             type={"text"}
-            placeholder={"Enter First Name"}
-            onChange={(e) => setFirstName(e.target.value)}
-            value={firstName}
+            placeholder={"Enter NGO Name"}
+            onChange={(e) => setName(e.target.value)}
+            value={name}
           />
         </div>
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}
-            type={"text"}
-            placeholder={"Enter Last Name"}
-            onChange={(e) => setLastName(e.target.value)}
-            value={lastName}
+            type={"number"}
+            placeholder={"Enter NGO Number"}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            value={phoneNumber}
+          />
+        </div>
+        <div class="uk-margin">
+          <textarea
+            className={"uk-textarea uk-form-width-large"}
+            rows={"5"}
+            placeholder={"Tell us something about yourself"}
+            onChange={(e) => setAbout(e.target.value)}
+            value={about}
           />
         </div>
         <div className={"uk-margin"}>
@@ -105,42 +117,35 @@ const DoctorRegistrationForm = (props) => {
             value={location}
           />
         </div>
+        <h4 className={"radio-select"}>Donation details:</h4>
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}
             type={"text"}
-            placeholder={"Enter Specialty"}
-            onChange={(e) => setSpecialty(e.target.value)}
-            value={specialty}
-          />
-        </div>
-        <div className={"uk-margin"}>
-          <input
-            className={"uk-input uk-form-width-large"}
-            type={"number"}
-            placeholder={"Whats your charge"}
-            onChange={(e) => setCharge(e.target.value)}
-            value={charge}
+            placeholder={"Enter NGO Account Number"}
+            onChange={(e) => setAccountNumber(e.target.value)}
+            value={accountNumber}
           />
         </div>
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}
             type={"text"}
-            placeholder={"Charge Duration"}
-            onChange={(e) => setChargeDuration(e.target.value)}
-            value={chargeDuration}
+            placeholder={"Enter NGO Account IFSC"}
+            onChange={(e) => setBankIFSC(e.target.value)}
+            value={bankIFSC}
           />
         </div>
-        <div class="uk-margin">
-          <textarea
-            className={"uk-textarea  uk-form-width-large"}
-            rows={"5"}
-            placeholder={"About Yourself"}
-            onChange={(e) => setAbout(e.target.value)}
-            value={about}
+        <div className={"uk-margin"}>
+          <input
+            className={"uk-input uk-form-width-large"}
+            type={"text"}
+            placeholder={"Enter NGO UPI ID"}
+            onChange={(e) => setUpiId(e.target.value)}
+            value={upiId}
           />
         </div>
+
         <h4 className={"signup-mssg"}>
           Changed your mind? {/* eslint-disable-next-line */}
           <a className={"signup-link"} onClick={() => setFormType("User")}>
@@ -161,4 +166,4 @@ const DoctorRegistrationForm = (props) => {
   );
 };
 
-export default DoctorRegistrationForm;
+export default NGORegistrationForm;

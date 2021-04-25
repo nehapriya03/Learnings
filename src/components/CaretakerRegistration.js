@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { AddDoctorAPI } from "../apis/Doctor";
+import { AddCaretakerAPI } from "../apis/Caretaker";
 import { UpdateUserById } from "../apis/User";
 
-const DoctorRegistrationForm = (props) => {
+const CaretakerRegistrationForm = (props) => {
   const { user, setUser, setFormType } = props;
+
   let userNameArray = user === null ? null : user.name.split(" ");
 
   const [firstName, setFirstName] = useState(
@@ -14,7 +15,6 @@ const DoctorRegistrationForm = (props) => {
     userNameArray === null ? "" : userNameArray[1]
   );
   const [location, setLocation] = useState("");
-  const [specialty, setSpecialty] = useState("");
   const [charge, setCharge] = useState("");
   const [chargeDuration, setChargeDuration] = useState("");
   const [about, setAbout] = useState("");
@@ -27,32 +27,30 @@ const DoctorRegistrationForm = (props) => {
       firstName === "" ||
       lastName === "" ||
       location === "" ||
-      specialty === "" ||
       charge === "" ||
       about === ""
     ) {
       setErrorMessage("Please fill all required fields.");
     }
     e.preventDefault();
-    let doctor = {
+    let caretaker = {
       firstName,
       lastName,
       location,
-      specialty,
       charge,
       chargeDuration,
       about,
     };
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    await AddDoctorAPI(doctor)
-      .then(async ({ data: createdDoctor }) => {
-        loggedInUser = { ...loggedInUser, targetUser: createdDoctor };
+    await AddCaretakerAPI(caretaker)
+      .then(async ({ data: createdCaretaker }) => {
+        loggedInUser = { ...loggedInUser, targetUser: createdCaretaker };
         await UpdateUserById(
           user.userId,
           {
             ...user,
-            targetUser: "Doctor",
-            targetUserId: createdDoctor.doctorId,
+            targetUser: "Caretaker",
+            targetUserId: createdCaretaker.caretakerId,
           },
           loggedInUser.token
         )
@@ -65,7 +63,7 @@ const DoctorRegistrationForm = (props) => {
           });
       })
       .catch((error) => {
-        console.error("Could not create doctor", error);
+        console.error("Could not create caretaker", error);
       });
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     history.push("/");
@@ -74,7 +72,7 @@ const DoctorRegistrationForm = (props) => {
   return (
     <>
       <div className={"login-form"}>
-        <h1 className={"login-text"}>Pets would love our new vet.</h1>
+        <h1 className={"login-text"}>Pets would love their new caretaker.</h1>
         <h4 className={"radio-select"}>
           Please provide your additional details:
         </h4>
@@ -108,35 +106,37 @@ const DoctorRegistrationForm = (props) => {
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}
-            type={"text"}
-            placeholder={"Enter Specialty"}
-            onChange={(e) => setSpecialty(e.target.value)}
-            value={specialty}
-          />
-        </div>
-        <div className={"uk-margin"}>
-          <input
-            className={"uk-input uk-form-width-large"}
             type={"number"}
-            placeholder={"Whats your charge"}
+            placeholder={"Enter Your Charge"}
             onChange={(e) => setCharge(e.target.value)}
             value={charge}
           />
         </div>
-        <div className={"uk-margin"}>
-          <input
-            className={"uk-input uk-form-width-large"}
-            type={"text"}
-            placeholder={"Charge Duration"}
-            onChange={(e) => setChargeDuration(e.target.value)}
-            value={chargeDuration}
-          />
+        <h4 className={"radio-select"}>Your charges are per?</h4>
+        <div
+          className={
+            "uk-margin uk-grid-small uk-child-width-auto uk-grid radio-section"
+          }
+          onChange={(e) => setChargeDuration(e.target.value)}
+        >
+          <label>
+            <input type={"radio"} value={"day"} name={"chargeDuration"} />
+            Day
+          </label>
+          <label>
+            <input type={"radio"} value={"week"} name={"chargeDuration"} />
+            Week
+          </label>
+          <label>
+            <input type={"radio"} value={"month"} name={"chargeDuration"} />
+            Month
+          </label>
         </div>
         <div class="uk-margin">
           <textarea
-            className={"uk-textarea  uk-form-width-large"}
+            className={"uk-textarea uk-form-width-large"}
             rows={"5"}
-            placeholder={"About Yourself"}
+            placeholder={"Tell us something about yourself"}
             onChange={(e) => setAbout(e.target.value)}
             value={about}
           />
@@ -161,4 +161,4 @@ const DoctorRegistrationForm = (props) => {
   );
 };
 
-export default DoctorRegistrationForm;
+export default CaretakerRegistrationForm;

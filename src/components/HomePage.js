@@ -17,10 +17,14 @@ import date2 from "../assets/date2.jpg";
 import date3 from "../assets/date3.jpg";
 import date4 from "../assets/date4.jpg";
 import date5 from "../assets/date5.jpg";
+import ngo1 from "../assets/ngo1.jpg";
+import ngo2 from "../assets/ngo2.jpg";
+import ngo3 from "../assets/ngo3.jpg";
 
 const veterinaryDoctorImages = [doc1, doc2, doc3, doc4];
 const caretakerImages = [care1, care2, care3, care4];
 const dateAndMateImages = [date1, date2, date3, date4, date5];
+const ngoImages = [ngo1, ngo2, ngo3];
 
 const doctorSlider = () => {
   return veterinaryDoctorImages.map((image, index) => {
@@ -47,6 +51,16 @@ const dateAndMateSlider = () => {
     return (
       <li key={index}>
         <img src={image} alt={`Date & Mate ${index}`} uk-cover={""} />
+      </li>
+    );
+  });
+};
+
+const ngoSlider = () => {
+  return ngoImages.map((image, index) => {
+    return (
+      <li key={index}>
+        <img src={image} alt={`NGO ${index}`} uk-cover={""} />
       </li>
     );
   });
@@ -243,6 +257,52 @@ const HomePage = () => {
               }
             >
               <ul className={"uk-slideshow-items"}>{dateAndMateSlider()}</ul>
+              <div
+                className={
+                  "uk-position-center-left uk-position-small uk-hidden-hover"
+                }
+                uk-slidenav-previous={""}
+                uk-slideshow-item={"previous"}
+              />
+              <div
+                className={
+                  "uk-position-center-right uk-position-small uk-hidden-hover"
+                }
+                uk-slidenav-next={""}
+                uk-slideshow-item={"next"}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className={"section"}>
+        <div uk-grid={""}>
+          <div className={"uk-width-1-2@l section-text"}>
+            <h1 className={"heading-text"}>NGOs</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut mollis
+              odio non turpis eleifend ultricies. Fusce ut commodo nunc,
+              imperdiet sodales nibh. Mauris lobortis, lorem non aliquet
+              maximus, lectus ligula posuere erat, quis aliquet eros leo at ex.
+              Maecenas scelerisque vestibulum purus, vel mollis purus dapibus
+              et. Cras risus ipsum, consequat at bibendum faucibus, ullamcorper
+              ac mauris. Integer vel metus eu massa ultrices tempus. Suspendisse
+              potenti.
+            </p>
+            <Link to={"/ngo"} target={"_blank"}>
+              <button className={"section-button"}>NGO</button>
+            </Link>
+          </div>
+          <div className={"uk-width-1-2@l"}>
+            <div
+              className={"uk-position-relative uk-visible-toggle uk-light"}
+              tabIndex="-1"
+              uk-slideshow={
+                "animation: fade; autoplay: true; autoplay-interval: 5000;"
+              }
+            >
+              <ul className={"uk-slideshow-items"}>{ngoSlider()}</ul>
               <div
                 className={
                   "uk-position-center-left uk-position-small uk-hidden-hover"
