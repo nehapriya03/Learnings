@@ -12,7 +12,7 @@ const DoctorPage = (props) => {
       });
     };
 
-    if (props.location.state === undefined) {
+    if (typeof props.location.state === "undefined") {
       fetchDoctor(doctorId);
     } else {
       let { tempDoctor } = props.location.state;

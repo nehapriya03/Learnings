@@ -11,3 +11,7 @@ export const GetAllDoctors = async () => {
 export const GetDoctorById = async (doctorId) => {
   return await Axios.get(`/doctor/${doctorId}`);
 };
+
+export const GetAllDoctorsByAvgReview = async (location) => {
+  return await Axios.get("/doctor/get/review", { params: { location } });
+};

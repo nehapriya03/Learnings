@@ -7,7 +7,7 @@ const NavBar = (props) => {
   const { user, setUser } = props;
 
   const showAuthPart = () => {
-    if (user === null || user === undefined) {
+    if (user === null || typeof user === "undefined") {
       return (
         <li>
           <Link to={"/login"}>Login</Link>

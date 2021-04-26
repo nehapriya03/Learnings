@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/AllPage.css";
-import { GetAllDoctors } from "../apis/Doctor";
+import { GetAllDoctorsByAvgReview } from "../apis/Doctor";
 
 const AllDoctorPage = () => {
   const [doctorList, setDoctorList] = useState([]);
 
-  useEffect(() => {
-    const fetchDoctors = async () => {
-      await GetAllDoctors().then(({ data: foundDoctors }) => {
+  const fetchDoctors = async (location) => {
+    await GetAllDoctorsByAvgReview(location)
+      .then(({ data: foundDoctors }) => {
         setDoctorList(foundDoctors);
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    };
+  };
 
+  useEffect(() => {
     fetchDoctors();
   }, []);
 
@@ -32,6 +36,9 @@ const AllDoctorPage = () => {
               />
             </div>
             <div className={"uk-card-body card-body"}>
+              {doctor.reviewAvg > 4 && (
+                <div className={"uk-card-badge uk-label"}>Highly Rated</div>
+              )}
               <h3 className={"uk-card-title"}>
                 Dr. {doctor.firstName} {doctor.lastName}
               </h3>
