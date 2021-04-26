@@ -108,6 +108,15 @@ const NGORegistrationForm = (props) => {
             value={about}
           />
         </div>
+        <div class="uk-margin">
+          <textarea
+            className={"uk-textarea uk-form-width-large"}
+            rows={"3"}
+            placeholder={"Enter your NGO Address"}
+            onChange={(e) => setAddress(e.target.value)}
+            value={address}
+          />
+        </div>
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}
@@ -121,7 +130,7 @@ const NGORegistrationForm = (props) => {
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}
-            type={"text"}
+            type={"number"}
             placeholder={"Enter NGO Account Number"}
             onChange={(e) => setAccountNumber(e.target.value)}
             value={accountNumber}

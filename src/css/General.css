@@ -25,3 +25,8 @@
 .uk-position-small {
   cursor: pointer;
 }
+
+.heading-text.about {
+  text-align: center;
+  font-weight: 600;
+}

@@ -23,6 +23,10 @@
   cursor: pointer;
 }
 
+.logo-image-box > a:hover {
+  text-decoration: none;
+}
+
 .logo-image-box h6.company-name:hover {
   color: #fff;
 }

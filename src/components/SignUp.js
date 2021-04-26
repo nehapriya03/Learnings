@@ -209,10 +209,10 @@ const SignUp = (props) => {
   return (
     <>
       {/* Temp Section */}
-      {/* <button onClick={(e) => setFormType("Doctor")}>Doctor</button>
+      <button onClick={(e) => setFormType("Doctor")}>Doctor</button>
       <button onClick={(e) => setFormType("Caretaker")}>Caretaker</button>
       <button onClick={(e) => setFormType("NGO")}>NGO</button>
-      <button onClick={(e) => setFormType("User")}>User</button> */}
+      <button onClick={(e) => setFormType("User")}>User</button>
       {/* Temp Section Ends */}
       {renderForm()}
     </>

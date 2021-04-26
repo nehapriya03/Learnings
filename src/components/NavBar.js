@@ -109,7 +109,9 @@ const NavBar = (props) => {
                       alt={"Philozooic Logo"}
                     />
                   </Link>
-                  <h6 className={"company-name"}>Philozooic</h6>
+                  <Link to={"/"}>
+                    <h6 className={"company-name"}>Philozooic</h6>
+                  </Link>
                 </div>
 
                 <ul className={"uk-navbar-nav"}>
