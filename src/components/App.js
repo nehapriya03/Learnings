@@ -11,6 +11,7 @@ const AboutUs = React.lazy(() => import("./AboutUs"));
 const SignUp = React.lazy(() => import("./SignUp"));
 const Login = React.lazy(() => import("./Login"));
 const AllDoctorPage = React.lazy(() => import("./AllDoctorPage"));
+const DoctorPage = React.lazy(() => import("./DoctorPage"));
 const AllCaretakerPage = React.lazy(() => import("./AllCaretakerPage"));
 const AllDateAndMatePage = React.lazy(() => import("./AllDateAndMatePage"));
 const AllNGOPage = React.lazy(() => import("./AllNGOPage"));
@@ -42,6 +43,7 @@ const App = () => {
               path={"/signup"}
               component={() => <SignUp setUser={setUser} user={user} />}
             />
+            <Route path={"/doctor/:doctorId"} component={DoctorPage} />
             <Route path={"/doctor"} component={AllDoctorPage} />
             <Route path={"/caretaker"} component={AllCaretakerPage} />
             <Route path={"/date-mate"} component={AllDateAndMatePage} />
