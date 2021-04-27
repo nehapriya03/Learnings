@@ -1,0 +1,62 @@
+.section {
+  padding: 10vh 10%;
+  margin: auto;
+}
+
+img.profile-pic {
+  width: 640px;
+}
+
+.info-contact {
+  padding: 1.5vh 0;
+}
+
+.info-contact > div > span > a {
+  color: rgb(104, 104, 104);
+}
+
+h1.info-name {
+  margin: auto;
+}
+
+.uk-label.label {
+  line-height: 2;
+  background: #00000078;
+  text-transform: none;
+}
+
+h3.info-charge {
+  margin-top: 10px;
+}
+
+.info-ratings {
+  text-align: left;
+}
+
+.review-star-div {
+  float: right;
+}
+
+h3.reviewer-name {
+  margin-top: auto;
+}
+
+.review-body {
+  padding: 15px;
+}
+
+.info-ratings-num {
+  color: rgba(37, 129, 0, 0.938);
+  padding: 7px 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .uk-grid > * {
+    padding-left: 0;
+  }
+
+  .all-page-card-section {
+    padding-left: 30px;
+  }
+}
+

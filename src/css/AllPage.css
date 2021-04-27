@@ -41,6 +41,11 @@
   text-align: center;
 }
 
+.star-section {
+  text-align: center;
+  padding: 10px 0;
+}
+
 small.review-box {
   text-align: center;
   display: block;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import StarRatings from "react-star-ratings";
 import "../css/AllPage.css";
 import { GetDoctorsByAvgReview } from "../apis/Doctor";
 
@@ -92,10 +93,18 @@ const AllDoctorPage = () => {
               <h6 className={"miscellaneous-info"}>
                 Specialty: {doctor.specialty}
               </h6>
-              <small className={"review-box"}>
-                {doctor.reviewAvg} ({doctor.reviewCount} review
-                {(doctor.reviewCount === 0 || doctor.reviewCount > 1) && "s"})
-              </small>
+              <div className={"star-section"}>
+                <StarRatings
+                  rating={Number(doctor.reviewAvg)}
+                  starDimension={"20px"}
+                />
+              </div>
+              <div>
+                <small className={"review-box"}>
+                  {doctor.reviewAvg} ({doctor.reviewCount} review
+                  {(doctor.reviewCount === 0 || doctor.reviewCount > 1) && "s"})
+                </small>
+              </div>
               <p className={"about-box"}>{doctor.about}</p>
               <div className={"button-box"}>
                 <Link

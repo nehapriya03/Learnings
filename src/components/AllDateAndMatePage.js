@@ -32,11 +32,6 @@ const AllDateAndMatePage = () => {
     }
   };
 
-  const numberFormatter = new Intl.NumberFormat("en-IN", {
-    style: "currency",
-    currency: "INR",
-  });
-
   useEffect(() => {
     fetchPetsByLocation([]);
   }, []);

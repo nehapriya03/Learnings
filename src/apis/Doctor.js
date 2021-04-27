@@ -12,6 +12,6 @@ export const GetDoctorById = async (doctorId) => {
   return await Axios.get(`/doctor/${doctorId}`);
 };
 
-export const GetDoctorsByAvgReview = async (locationArray) => {
-  return await Axios.post("/doctor/get/review", { locationArray });
+export const GetDoctorsByAvgReview = async (locationArray, doctorId) => {
+  return await Axios.post("/doctor/get/review", { locationArray, doctorId });
 };
