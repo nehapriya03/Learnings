@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/AllPage.css";
-import { GetAllDoctorsByAvgReview } from "../apis/Doctor";
+import { GetDoctorsByAvgReview } from "../apis/Doctor";
+
+let locationSet = new Set();
+let locationToSearchSet = new Set();
 
 const AllDoctorPage = () => {
   const [doctorList, setDoctorList] = useState([]);
+  const [showFilter, setShowFilter] = useState(true);
 
-  const fetchDoctors = async (location) => {
-    await GetAllDoctorsByAvgReview(location)
+  const fetchDoctorsByLocation = async (locationArray) => {
+    await GetDoctorsByAvgReview(locationArray)
       .then(({ data: foundDoctors }) => {
         setDoctorList(foundDoctors);
       })
@@ -16,33 +20,83 @@ const AllDoctorPage = () => {
       });
   };
 
+  const setLocationToSearchSet = (e) => {
+    let { value, checked } = e.target;
+    if (checked) {
+      locationToSearchSet.add(value);
+      console.log(locationToSearchSet);
+      fetchDoctorsByLocation([...locationToSearchSet]);
+    } else if (locationToSearchSet.has(value)) {
+      locationToSearchSet.delete(value);
+      fetchDoctorsByLocation([...locationToSearchSet]);
+    }
+  };
+
+  const numberFormatter = new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+  });
+
   useEffect(() => {
-    fetchDoctors();
+    fetchDoctorsByLocation([]);
   }, []);
+
+  const renderLocationCheckboxes = () => {
+    return [...locationSet].map((location) => {
+      return (
+        <div>
+          <label>
+            <input
+              className={"uk-checkbox"}
+              type={"checkbox"}
+              value={location}
+              onChange={(e) => setLocationToSearchSet(e)}
+            />
+            {` ${location}`}
+          </label>
+        </div>
+      );
+    });
+  };
 
   const renderDoctorCards = () => {
     if (doctorList.length === 0) {
-      return <h1>No Veterinary Doctors have registered yet!</h1>;
+      return <span uk-spinner={"ratio: 4.5"} />;
     }
     return doctorList.map((doctor) => {
+      locationSet.add(doctor.location);
       return (
         <div key={doctor.doctorId}>
           <div className={"uk-card uk-card-default uk-card-hover"}>
+            {doctor.reviewAvg > 4 && (
+              <div className={"uk-card-badge uk-label label"}>Highly Rated</div>
+            )}
             <div className={"uk-card-media-top"}>
               <img
+                className={"card-image"}
                 src={`/${doctor.image}`}
                 alt={`Veterinary Doctor: ${doctor.firstName} ${doctor.lastName}`}
                 title={`Veterinary Doctor: ${doctor.firstName} ${doctor.lastName}`}
               />
             </div>
             <div className={"uk-card-body card-body"}>
-              {doctor.reviewAvg > 4 && (
-                <div className={"uk-card-badge uk-label"}>Highly Rated</div>
-              )}
-              <h3 className={"uk-card-title"}>
+              <h3 className={"uk-card-title name"}>
                 Dr. {doctor.firstName} {doctor.lastName}
               </h3>
-              <p>{doctor.about}</p>
+              <h4 className={"charge-box"}>
+                {numberFormatter.format(doctor.charge)}/{doctor.chargeDuration}
+              </h4>
+              <h6 className={"miscellaneous-info"}>
+                Location: {doctor.location}
+              </h6>
+              <h6 className={"miscellaneous-info"}>
+                Specialty: {doctor.specialty}
+              </h6>
+              <small className={"review-box"}>
+                {doctor.reviewAvg} ({doctor.reviewCount} review
+                {(doctor.reviewCount === 0 || doctor.reviewCount > 1) && "s"})
+              </small>
+              <p className={"about-box"}>{doctor.about}</p>
               <div className={"button-box"}>
                 <Link
                   to={{
@@ -71,9 +125,22 @@ const AllDoctorPage = () => {
       </div>
 
       <div uk-grid={""} className={"section"}>
-        <div className={"uk-width-1-4@l"}>1</div>
-        <div className={"uk-width-3-4@l"}>
-          <div className={"uk-child-width-1-3@m uk-grid-match"} uk-grid={""}>
+        <div className={"uk-width-1-4@l"}>
+          <div className={"location-filter-section"}>
+            <h6>
+              Filter by location:
+              <span
+                uk-icon={"icon: chevron-down"}
+                className={"collapse-icon"}
+                onClick={(e) => setShowFilter(!showFilter)}
+                style={showFilter ? { transform: "rotate(180deg)" } : {}}
+              />
+            </h6>
+            {showFilter && renderLocationCheckboxes()}
+          </div>
+        </div>
+        <div className={"uk-width-3-4@l all-page-card-section"}>
+          <div className={"uk-child-width-1-3@l uk-grid-match"} uk-grid={""}>
             {renderDoctorCards()}
           </div>
         </div>

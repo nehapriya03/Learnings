@@ -29,7 +29,7 @@ const App = () => {
   return (
     <Router>
       <div>
-        <React.Suspense fallback={<p>Loading...</p>}>
+        <React.Suspense fallback={<span uk-spinner={"ratio: 4.5"} />}>
           <NavBar user={user} setUser={setUser} />
           <Switch>
             <Route path={"/"} exact component={HomePage} />

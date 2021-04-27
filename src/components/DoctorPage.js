@@ -21,7 +21,13 @@ const DoctorPage = (props) => {
   }, [doctorId, props.location]);
 
   return (
-    <h1>{doctor === null ? "Loading..." : `Doctor: ${doctor.firstName}`}</h1>
+    <h1>
+      {doctor === null ? (
+        <span uk-spinner={"ratio: 4.5"} />
+      ) : (
+        `Doctor: ${doctor.firstName}`
+      )}
+    </h1>
   );
 };
 

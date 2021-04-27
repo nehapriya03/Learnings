@@ -30,3 +30,85 @@
   font-size: 18px;
   cursor: pointer;
 }
+
+.uk-card-title.name {
+  text-align: center;
+  margin-bottom: auto;
+}
+
+.charge-box {
+  margin: auto;
+  text-align: center;
+}
+
+small.review-box {
+  text-align: center;
+  display: block;
+  color: rgba(37, 129, 0, 0.938);
+}
+
+p.about-box {
+  font-size: 14px;
+  max-height: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-height: 20vh;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
+h6.miscellaneous-info {
+  text-align: center;
+  margin: 3px 0;
+  font-size: small;
+}
+
+.uk-label.label {
+  line-height: 2;
+  background: #00000078;
+  text-transform: none;
+}
+
+.collapse-icon {
+  float: right;
+  cursor: pointer;
+  background-color: #000;
+  border-radius: 100px;
+  padding: 1px;
+  color: #fff;
+}
+
+.collapse-icon:hover {
+  background-color: rgb(78, 78, 78);
+}
+
+.location-filter-section {
+  background-color: #fff;
+  padding: 4vh;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.219);
+}
+
+input[type="checkbox"]:checked {
+  background-color: #000 !important;
+}
+
+input[type="checkbox"]:active {
+  border: 1px solid #000;
+}
+
+img.card-image {
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .uk-grid > * {
+    padding-left: 0;
+  }
+
+  .all-page-card-section {
+    padding-left: 30px;
+  }
+}
