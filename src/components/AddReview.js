@@ -65,7 +65,7 @@ const AddReview = (props) => {
               src={
                 loggedUser?.user?.picturePath
                   ? `/${loggedUser?.user?.picturePath}`
-                  : `/pp-2.jpg`
+                  : `/pp-default.jpg`
               }
             />
           </div> 

@@ -48,6 +48,12 @@
   text-align: center;
 }
 
+.nav-dp {
+  width: 30px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
 .phone-nav {
   display: none;
 }

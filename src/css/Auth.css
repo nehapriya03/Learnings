@@ -62,7 +62,7 @@ h4.radio-select {
   background-color: black;
   text-align: center;
   min-height: 55vh;
-  padding: 20vh 5% 10vh 5%;
+  padding: 25vh 5% 10vh 5%;
 }
 
 .uk-border-circle {
@@ -76,6 +76,15 @@ img.photo-selected {
 
 .phone-signup-section {
   display: none;
+}
+
+.type-image {
+  cursor: pointer;
+}
+
+.type-image.selected {
+  cursor: pointer;
+  border: 2px solid red;
 }
 
 @media screen and (max-width: 1200px) {

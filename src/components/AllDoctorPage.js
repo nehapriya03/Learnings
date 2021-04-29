@@ -77,7 +77,7 @@ const AllDoctorPage = () => {
             <div className={"uk-card-media-top"}>
               <img
                 className={"card-image"}
-                src={`/${doctor.image}`}
+                src={`/${doctor.picturePath}`}
                 alt={`Veterinary Doctor: ${doctor.firstName} ${doctor.lastName}`}
                 title={`Veterinary Doctor: ${doctor.firstName} ${doctor.lastName}`}
               />

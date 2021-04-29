@@ -100,7 +100,7 @@ const DoctorPage = (props) => {
       <div uk-grid={""} className={"section"}>
         <div className={"uk-width-2-5@l"}>
           <img
-            src={`/${doctor.image}`}
+            src={`/${doctor.picturePath}`}
             alt={`Veterinary Doctor: ${doctor.firstName} ${doctor.lastName}`}
             title={`Veterinary Doctor: ${doctor.firstName} ${doctor.lastName}`}
             className={"profile-pic"}

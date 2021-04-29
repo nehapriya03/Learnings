@@ -24,10 +24,7 @@ const SignUp = (props) => {
 
   useEffect(() => {
     if (user !== null) {
-      if (
-        user.userType === "User" ||
-        typeof user?.targetUserId !== "undefined"
-      ) {
+      if (user.userType === "User" || user?.targetUserId !== null) {
         history.push("/");
       } else {
         user && setFormType(user.userType);

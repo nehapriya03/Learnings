@@ -83,7 +83,7 @@ const AllDateAndMatePage = () => {
               </h4> */}
               <h6 className={"miscellaneous-info"}>Location: {pet.location}</h6>
               <h6 className={"miscellaneous-info"}>
-                {pet.mateStatus ? "Available to Mate" : "Unavailble to Mate"}
+                {pet.mateStatus ? "Available to Mate" : "Unavailable to Mate"}
               </h6>
               <small className={"review-box"}>
                 {pet.reviewAvg} ({pet.reviewCount} review

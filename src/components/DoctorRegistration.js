@@ -19,6 +19,7 @@ const DoctorRegistrationForm = (props) => {
   const [chargeDuration, setChargeDuration] = useState("");
   const [about, setAbout] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [picturePath, setPicturePath] = useState("");
 
   const history = useHistory();
 
@@ -29,7 +30,8 @@ const DoctorRegistrationForm = (props) => {
       location === "" ||
       specialty === "" ||
       charge === "" ||
-      about === ""
+      about === "" ||
+      picturePath === ""
     ) {
       setErrorMessage("Please fill all required fields.");
     }
@@ -42,6 +44,7 @@ const DoctorRegistrationForm = (props) => {
       charge,
       chargeDuration,
       about,
+      picturePath,
     };
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     await AddDoctorAPI(doctor)
@@ -69,6 +72,27 @@ const DoctorRegistrationForm = (props) => {
       });
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     history.push("/");
+  };
+
+  const renderDoctorImages = () => {
+    let array = [];
+    for (let i = 0; i < 6; i++) {
+      array.push(
+        <div>
+          <img
+            src={`/dr-${i + 1}.jpg`}
+            alt={"DR"}
+            className={
+              picturePath === `dr-${i + 1}.jpg`
+                ? "type-image selected"
+                : "type-image"
+            }
+            onClick={(e) => setPicturePath(`dr-${i + 1}.jpg`)}
+          />
+        </div>
+      );
+    }
+    return array;
   };
 
   return (
@@ -140,6 +164,15 @@ const DoctorRegistrationForm = (props) => {
             onChange={(e) => setAbout(e.target.value)}
             value={about}
           />
+        </div>
+        <div>
+          <h4 className={"radio-select"}>Choose your Image:</h4>
+          <div
+            class="uk-grid-match uk-child-width-expand@s uk-text-center"
+            uk-grid={""}
+          >
+            {renderDoctorImages()}
+          </div>
         </div>
         <h4 className={"signup-mssg"}>
           Changed your mind? {/* eslint-disable-next-line */}
