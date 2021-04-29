@@ -33,8 +33,12 @@ h3.info-charge {
   text-align: left;
 }
 
-.review-star-div {
+.review-star-div-desktop {
   float: right;
+}
+
+.review-star-div-mobile {
+  display: none;
 }
 
 h3.reviewer-name {
@@ -50,6 +54,48 @@ h3.reviewer-name {
   padding: 7px 0;
 }
 
+.submit-btn-div {
+  padding: 10px 0 0 0;
+  text-align: center;
+}
+
+.submit-btn-div > button {
+  border: none;
+  border-radius: 7px;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.update-review-btn {
+  border: none;
+  border-radius: 7px;
+  padding: 7px 15px;
+  background-color: black;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.session-err-message {
+  text-align: center;
+  margin: auto;
+  padding: 15px 0;
+}
+
+.edit-close-icon {
+  cursor: pointer;
+}
+
+.delete-icon {
+  float: right;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 1200px) {
   .uk-grid > * {
     padding-left: 0;
@@ -58,5 +104,22 @@ h3.reviewer-name {
   .all-page-card-section {
     padding-left: 30px;
   }
-}
 
+  .review-star-div-desktop {
+    display: none;
+  }
+
+  .review-star-div-mobile {
+    text-align: center;
+    display: block;
+  }
+
+  h3.reviewer-name {
+    font-size: large;
+    padding: 0 10px;
+  }
+
+  .info-date {
+    padding: 0 10px;
+  }
+}

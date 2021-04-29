@@ -4,6 +4,9 @@ import "../css/IndividualPage.css";
 import { GetDoctorsByAvgReview } from "../apis/Doctor";
 import { GetUserByTargetUserIdAPI } from "../apis/User";
 import { GetReviewsWithUserDataAPI } from "../apis/Review";
+import AddReview from "./AddReview";
+import Review from "./Review";
+import { Link } from "react-router-dom";
 
 const DoctorPage = (props) => {
   const { doctorId } = props.match.params;
@@ -25,12 +28,6 @@ const DoctorPage = (props) => {
   const numberFormatter = new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
-  });
-
-  const dateFormatter = new Intl.DateTimeFormat("en-In", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
   });
 
   const fetchDoctor = async (doctorID) => {
@@ -65,57 +62,15 @@ const DoctorPage = (props) => {
   };
 
   const renderReviews = () => {
-    return doctorReviews.map((doctorReview) => {
+    return doctorReviews.map((doctorReview, index) => {
       return (
-        <div className={"uk-card uk-card-default"}>
-          <div className={"uk-card-header"}>
-            <div className={"uk-grid-small uk-flex-middle"} uk-grid={""}>
-              <div className={"uk-width-auto"}>
-                <img
-                  className={"uk-border-circle"}
-                  width="40"
-                  height="40"
-                  alt={`${
-                    typeof doctorReview.reviewerData[0] !== "undefined"
-                      ? doctorReview.reviewerData[0].name
-                      : "Test name"
-                  }
-                  `}
-                  title={`${
-                    typeof doctorReview.reviewerData[0] !== "undefined"
-                      ? doctorReview.reviewerData[0].name
-                      : "Test name"
-                  }
-                  `}
-                  src={"https://getuikit.com/docs/images/avatar.jpg"}
-                />
-              </div>
-              <div className={"uk-width-expand"}>
-                <div className={"review-star-div"}>
-                  <StarRatings
-                    rating={Number(doctorReview.rating)}
-                    starDimension={"17px"}
-                  />
-                </div>
-                <h3
-                  className={
-                    "uk-card-title uk-margin-remove-bottom reviewer-name"
-                  }
-                >
-                  {typeof doctorReview.reviewerData[0] !== "undefined"
-                    ? doctorReview.reviewerData[0].name
-                    : "Test name"}
-                </h3>
-                <p className={"uk-text-meta uk-margin-remove-top"}>
-                  <time>{dateFormatter.format(doctorReview.dateCreated)}</time>
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class={"uk-card-body review-body"}>
-            <p>{doctorReview.reviewString}</p>
-          </div>
-        </div>
+        <Review
+          reviewUser={doctorReview}
+          key={doctorReview.doctorId}
+          index={index}
+          setReviews={setDoctorReviews}
+          reviews={doctorReviews}
+        />
       );
     });
   };
@@ -164,7 +119,7 @@ const DoctorPage = (props) => {
             {numberFormatter.format(doctor.charge)}/{doctor.chargeDuration}
           </h3>
           <div className={"info-ratings"}>
-            <StarRatings rating={Number(doctor.reviewAvg)} />
+            {/* <StarRatings rating={Number(doctor.reviewAvg)} /> */}
           </div>
           <div>
             <h5 className={"info-ratings-num"}>
@@ -175,6 +130,27 @@ const DoctorPage = (props) => {
           <hr />
           <h4>About Dr. {doctor.firstName}:</h4>
           <p>{doctor.about}</p>
+          <hr />
+          <h4>Add a review:</h4>
+          {(() => {
+            let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+            if (loggedInUser) {
+              return (
+                <AddReview
+                  loggedUser={loggedInUser}
+                  reviewType={"Doctor"}
+                  reviewOfId={doctorId}
+                  setReviews={setDoctorReviews}
+                  reviews={doctorReviews}
+                />
+              );
+            }
+            return (
+              <legend>
+                You're not logged in. <Link to={"/login"}>Login here</Link>
+              </legend>
+            );
+          })()}
           <hr />
           <h4>Reviews:</h4>
           {renderReviews()}
