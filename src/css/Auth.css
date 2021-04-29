@@ -1,4 +1,5 @@
-.login-form {
+.login-form,
+.login-s-form {
   background-color: black;
   text-align: center;
   min-height: 55vh;
@@ -16,6 +17,7 @@
   font-family: "Open Sans";
   border: none;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .signup-mssg {
@@ -54,4 +56,56 @@ h4.radio-select {
 
 .radio-section > label {
   color: #fff;
+}
+
+.image-section {
+  background-color: black;
+  text-align: center;
+  min-height: 55vh;
+  padding: 20vh 5% 10vh 5%;
+}
+
+.uk-border-circle {
+  cursor: pointer;
+  width: 12%;
+}
+
+img.photo-selected {
+  border: 4px solid red;
+}
+
+.phone-signup-section {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .image-section {
+    background-color: black;
+    text-align: center;
+    min-height: 55vh;
+    padding: 0 5% 2vh 12%;
+  }
+
+  .login-s-form {
+    background-color: black;
+    text-align: center;
+    min-height: 55vh;
+    padding: 10vh 10% 0 10%;
+  }
+
+  .uk-border-circle {
+    cursor: pointer;
+    width: 18.5%;
+  }
+
+  .phone-signup-section {
+    display: block;
+    background-color: #000;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .desktop-signup-section {
+    display: none;
+  }
 }

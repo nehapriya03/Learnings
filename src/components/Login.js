@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { LoginAPI } from "../apis/Auth";
 import { useHistory } from "react-router-dom";
@@ -11,6 +11,11 @@ const Login = (props) => {
   const history = useHistory();
 
   const { setUser } = props;
+
+  useEffect(() => {
+    JSON.parse(localStorage.getItem("loggedInUser")) !== null &&
+      history.push("/");
+  });
 
   const onFormSubmit = (event) => {
     event.preventDefault();

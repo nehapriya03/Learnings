@@ -13,6 +13,7 @@ const DoctorPage = (props) => {
   const [doctor, setDoctor] = useState(null);
   const [doctorUser, setDoctorUser] = useState(null);
   const [doctorReviews, setDoctorReviews] = useState([]);
+  const [isDoctorFound, setIsDoctorFound] = useState(true);
 
   useEffect(() => {
     if (typeof props.location.state === "undefined") {
@@ -25,7 +26,9 @@ const DoctorPage = (props) => {
     fetchDoctorReviews(doctorId);
   }, [doctorId, props.location]);
 
-  const numberFormatter = new Intl.NumberFormat("en-IN", {
+  const numberFormatter = new Intl.NumberFormat("en-In");
+
+  const currencyFormatter = new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
   });
@@ -33,9 +36,13 @@ const DoctorPage = (props) => {
   const fetchDoctor = async (doctorID) => {
     await GetDoctorsByAvgReview([], doctorID)
       .then(({ data: foundDoctor }) => {
-        setDoctor(foundDoctor);
+        setDoctor(foundDoctor?.[0]);
+        setIsDoctorFound(true);
       })
       .catch((error) => {
+        if (error.response.status === 404) {
+          setIsDoctorFound(false);
+        }
         console.error(error);
       });
   };
@@ -46,6 +53,9 @@ const DoctorPage = (props) => {
         setDoctorUser(foundUser);
       })
       .catch((error) => {
+        if (error.response.status === 404) {
+          setIsDoctorFound(false);
+        }
         console.error(error);
       });
   };
@@ -76,6 +86,13 @@ const DoctorPage = (props) => {
   };
 
   const renderDoctorContent = () => {
+    if (!isDoctorFound) {
+      return (
+        <p className={"not-found-message"}>
+          404: Sorry, this page is not available!
+        </p>
+      );
+    }
     if (doctor === null || doctorUser === null) {
       return <span uk-spinner={"ratio: 4.5"} />;
     }
@@ -116,18 +133,22 @@ const DoctorPage = (props) => {
             )}
           </h1>
           <h3 className={"info-charge"}>
-            {numberFormatter.format(doctor.charge)}/{doctor.chargeDuration}
+            {currencyFormatter.format(doctor.charge)}/{doctor.chargeDuration}
           </h3>
           <div className={"info-ratings"}>
-            {/* <StarRatings rating={Number(doctor.reviewAvg)} /> */}
+            <StarRatings rating={Number(doctor.reviewAvg)} />
           </div>
           <div>
             <h5 className={"info-ratings-num"}>
-              {doctor.reviewAvg} ({doctor.reviewCount} review
+              {doctor.reviewAvg?.toFixed(3)} (
+              {numberFormatter.format(doctor.reviewCount)} review
               {(doctor.reviewCount === 0 || doctor.reviewCount > 1) && "s"})
             </h5>
           </div>
           <hr />
+          <h5>
+            Specialty: {doctor.specialty} | Location: {doctor.location}
+          </h5>
           <h4>About Dr. {doctor.firstName}:</h4>
           <p>{doctor.about}</p>
           <hr />

@@ -33,7 +33,9 @@ const AllDoctorPage = () => {
     }
   };
 
-  const numberFormatter = new Intl.NumberFormat("en-IN", {
+  const numberFormatter = new Intl.NumberFormat("en-IN");
+
+  const currencyFormatter = new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
   });
@@ -85,7 +87,8 @@ const AllDoctorPage = () => {
                 Dr. {doctor.firstName} {doctor.lastName}
               </h3>
               <h4 className={"charge-box"}>
-                {numberFormatter.format(doctor.charge)}/{doctor.chargeDuration}
+                {currencyFormatter.format(doctor.charge)}/
+                {doctor.chargeDuration}
               </h4>
               <h6 className={"miscellaneous-info"}>
                 Location: {doctor.location}
@@ -101,7 +104,8 @@ const AllDoctorPage = () => {
               </div>
               <div>
                 <small className={"review-box"}>
-                  {doctor.reviewAvg} ({doctor.reviewCount} review
+                  {doctor.reviewAvg?.toFixed(3)} (
+                  {numberFormatter.format(doctor.reviewCount)} review
                   {(doctor.reviewCount === 0 || doctor.reviewCount > 1) && "s"})
                 </small>
               </div>

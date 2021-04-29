@@ -50,22 +50,34 @@ const AddReview = (props) => {
           <div className={"uk-width-auto"}>
             <img
               className={"uk-border-circle"}
-              width={"40"}
-              height={"40"}
-              alt={`Test name`}
-              title={"Test name"}
-              src={"https://getuikit.com/docs/images/avatar.jpg"}
+              width={"50"}
+              height={"50"}
+              alt={
+                loggedUser?.user?.name
+                  ? `${loggedUser?.user?.name}`
+                  : "Philozooic User"
+              }
+              title={
+                loggedUser?.user?.name
+                  ? `${loggedUser?.user?.name}`
+                  : "Philozooic User"
+              }
+              src={
+                loggedUser?.user?.picturePath
+                  ? `/${loggedUser?.user?.picturePath}`
+                  : `/pp-2.jpg`
+              }
             />
-          </div>
+          </div> 
           <div className={"uk-width-expand"}>
             {errorMessage === "" && (
               <div className={"review-star-div-desktop"}>
-                {/* <StarRatings
+                <StarRatings
                   rating={Number(rating)}
                   starDimension={"17px"}
                   changeRating={(newRating) => setRating(newRating)}
                   starHoverColor={"rgb(109, 122, 130)"}
-                /> */}
+                />
               </div>
             )}
             <h3

@@ -7,7 +7,7 @@ const Review = (props) => {
 
   const [isReviewBeingEdited, setIsReviewBeingEdited] = useState(false);
   const [reviewString, setReviewString] = useState(reviewUser.reviewString);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(-1);
   const [errorMessage, setErrorMessage] = useState("");
 
   const dateFormatter = new Intl.DateTimeFormat("en-In", {
@@ -120,28 +120,36 @@ const Review = (props) => {
           <div className={"uk-width-auto"}>
             <img
               className={"uk-border-circle"}
-              width={"40"}
-              height={"40"}
-              alt={`${reviewUser?.reviewerData?.[0]?.name ?? "Test Name"}`}
-              title={`${reviewUser?.reviewerData?.[0]?.name ?? "Test Name"}`}
-              src={"https://getuikit.com/docs/images/avatar.jpg"}
+              width={"50"}
+              height={"50"}
+              alt={`${
+                reviewUser?.reviewerData?.[0]?.name ?? "Philozooic User"
+              }`}
+              title={`${
+                reviewUser?.reviewerData?.[0]?.name ?? "Philozooic User"
+              }`}
+              src={
+                reviewUser?.reviewerData?.[0]?.picturePath
+                  ? `/${reviewUser?.reviewerData?.[0]?.picturePath}`
+                  : `/pp-default.jpg`
+              }
             />
           </div>
           <div className={"uk-width-expand"}>
             <div className={"review-star-div-desktop"}>
-              {/* <StarRatings
-                rating={Number(rating)}
+              <StarRatings
+                rating={rating >= 0 ? rating : reviewUser?.rating}
                 changeRating={
                   isReviewBeingEdited && ((newRating) => setRating(newRating))
                 }
                 starDimension={"17px"}
                 starHoverColor={"rgb(109, 122, 130)"}
-              /> */}
+              />
             </div>
             <h3
               className={"uk-card-title uk-margin-remove-bottom reviewer-name"}
             >
-              {reviewUser?.reviewerData?.[0]?.name ?? "Test Name"}
+              {reviewUser?.reviewerData?.[0]?.name ?? "Philozooic User"}
             </h3>
             <p className={"uk-text-meta uk-margin-remove-top info-date"}>
               {typeof reviewUser.dateCreated !== "undefined" &&
@@ -150,14 +158,14 @@ const Review = (props) => {
           </div>
         </div>
         <div className={"review-star-div-mobile"}>
-          {/* <StarRatings
-            // rating={Number(reviewUser.rating)}
+          <StarRatings
+            rating={rating >= 0 ? rating : reviewUser?.rating}
             changeRating={
               isReviewBeingEdited && ((newRating) => setRating(newRating))
             }
             starDimension={"17px"}
             starHoverColor={"rgb(109, 122, 130)"}
-          /> */}
+          />
         </div>
       </div>
       <div class={"uk-card-body review-body"}>
