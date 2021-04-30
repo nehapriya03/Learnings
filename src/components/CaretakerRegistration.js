@@ -19,8 +19,31 @@ const CaretakerRegistrationForm = (props) => {
   const [chargeDuration, setChargeDuration] = useState("");
   const [about, setAbout] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [picturePath, setPicturePath] = useState("");
 
   const history = useHistory();
+
+  let cityArray = [
+    "New Delhi",
+    "Kolkata",
+    "Bengaluru",
+    "Pune",
+    "Mumbai",
+    "Chennai",
+    "Hyderabad",
+    "Indore",
+    "Patna",
+    "Ranchi",
+    "Lucknow",
+    "Prayagraj",
+    "Ahmedabad",
+    "Agra",
+    "Kanpur",
+    "Jamshedpur",
+    "Srinagar",
+    "Gandhinagar",
+    "Thiruvananthapuram",
+  ];
 
   const handleSubmitClick = async (e) => {
     if (
@@ -69,6 +92,39 @@ const CaretakerRegistrationForm = (props) => {
     history.push("/");
   };
 
+  const renderCaretakerImages = () => {
+    let array = [];
+    for (let i = 0; i < 4; i++) {
+      array.push(
+        <div key={i}>
+          <img
+            src={`/ctr-${i + 1}.jpg`}
+            alt={"Caretaker"}
+            className={
+              picturePath === `ctr-${i + 1}.jpg`
+                ? "type-image selected"
+                : "type-image"
+            }
+            onClick={(e) => setPicturePath(`ctr-${i + 1}.jpg`)}
+          />
+        </div>
+      );
+    }
+    return array;
+  };
+
+  const renderCityOptions = () => {
+    let array = [];
+    for (let i = 0; i < cityArray.length; i++) {
+      array.push(
+        <option key={i} value={cityArray[i]}>
+          {cityArray[i]}
+        </option>
+      );
+    }
+    return array;
+  };
+
   return (
     <>
       <div className={"login-form"}>
@@ -94,45 +150,39 @@ const CaretakerRegistrationForm = (props) => {
             value={lastName}
           />
         </div>
+        <h4 className={"radio-select"}>Your Location?</h4>
         <div className={"uk-margin"}>
-          <input
-            className={"uk-input uk-form-width-large"}
-            type={"text"}
-            placeholder={"Enter Location"}
+          <select
+            className={"uk-select uk-form-width-large"}
             onChange={(e) => setLocation(e.target.value)}
             value={location}
-          />
+          >
+            {renderCityOptions()}
+          </select>
         </div>
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}
             type={"number"}
-            placeholder={"Enter Your Charge"}
+            placeholder={"Whats your charge?"}
             onChange={(e) => setCharge(e.target.value)}
             value={charge}
           />
         </div>
-        <h4 className={"radio-select"}>Your charges are per?</h4>
-        <div
-          className={
-            "uk-margin uk-grid-small uk-child-width-auto uk-grid radio-section"
-          }
-          onChange={(e) => setChargeDuration(e.target.value)}
-        >
-          <label>
-            <input type={"radio"} value={"day"} name={"chargeDuration"} />
-            Day
-          </label>
-          <label>
-            <input type={"radio"} value={"week"} name={"chargeDuration"} />
-            Week
-          </label>
-          <label>
-            <input type={"radio"} value={"month"} name={"chargeDuration"} />
-            Month
-          </label>
+        <h4 className={"radio-select"}>Your charges are:</h4>
+        <div className={"uk-margin"}>
+          <select
+            className={"uk-select uk-form-width-large"}
+            onChange={(e) => setChargeDuration(e.target.value)}
+            value={chargeDuration}
+          >
+            <option value={"hr"}>Hourly</option>
+            <option value={"day"}>Daily</option>
+            <option value={"week"}>Weekly</option>
+            <option value={"month"}>Monthly</option>
+          </select>
         </div>
-        <div class="uk-margin">
+        <div className={"uk-margin"}>
           <textarea
             className={"uk-textarea uk-form-width-large"}
             rows={"5"}
@@ -140,6 +190,15 @@ const CaretakerRegistrationForm = (props) => {
             onChange={(e) => setAbout(e.target.value)}
             value={about}
           />
+        </div>
+        <div>
+          <h4 className={"radio-select"}>Choose your Image:</h4>
+          <div
+            className={"uk-grid-match uk-child-width-expand@s uk-text-center"}
+            uk-grid={""}
+          >
+            {renderCaretakerImages()}
+          </div>
         </div>
         <h4 className={"signup-mssg"}>
           Changed your mind? {/* eslint-disable-next-line */}

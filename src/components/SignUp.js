@@ -73,6 +73,7 @@ const SignUp = (props) => {
     for (let i = 0; i < 50; i++) {
       array.push(
         <img
+          key={i}
           src={`/pp-${i + 1}.jpg`}
           alt={"PP"}
           className={

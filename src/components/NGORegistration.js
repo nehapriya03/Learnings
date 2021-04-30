@@ -18,8 +18,31 @@ const NGORegistrationForm = (props) => {
   const [bankIFSC, setBankIFSC] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [picturePath, setPicturePath] = useState("");
 
   const history = useHistory();
+
+  let cityArray = [
+    "New Delhi",
+    "Kolkata",
+    "Bengaluru",
+    "Pune",
+    "Mumbai",
+    "Chennai",
+    "Hyderabad",
+    "Indore",
+    "Patna",
+    "Ranchi",
+    "Lucknow",
+    "Prayagraj",
+    "Ahmedabad",
+    "Agra",
+    "Kanpur",
+    "Jamshedpur",
+    "Srinagar",
+    "Gandhinagar",
+    "Thiruvananthapuram",
+  ];
 
   const handleSubmitClick = async (e) => {
     if (
@@ -74,6 +97,39 @@ const NGORegistrationForm = (props) => {
     history.push("/");
   };
 
+  const renderNGOImages = () => {
+    let array = [];
+    for (let i = 0; i < 4; i++) {
+      array.push(
+        <div key={i}>
+          <img
+            src={`/ngo-${i + 1}.jpg`}
+            alt={"NGO"}
+            className={
+              picturePath === `ngo-${i + 1}.jpg`
+                ? "type-image selected"
+                : "type-image"
+            }
+            onClick={(e) => setPicturePath(`ngo-${i + 1}.jpg`)}
+          />
+        </div>
+      );
+    }
+    return array;
+  };
+
+  const renderCityOptions = () => {
+    let array = [];
+    for (let i = 0; i < cityArray.length; i++) {
+      array.push(
+        <option key={i} value={cityArray[i]}>
+          {cityArray[i]}
+        </option>
+      );
+    }
+    return array;
+  };
+
   return (
     <>
       <div className={"login-form"}>
@@ -99,7 +155,7 @@ const NGORegistrationForm = (props) => {
             value={phoneNumber}
           />
         </div>
-        <div class="uk-margin">
+        <div className={"uk-margin"}>
           <textarea
             className={"uk-textarea uk-form-width-large"}
             rows={"5"}
@@ -108,7 +164,7 @@ const NGORegistrationForm = (props) => {
             value={about}
           />
         </div>
-        <div class="uk-margin">
+        <div className={"uk-margin"}>
           <textarea
             className={"uk-textarea uk-form-width-large"}
             rows={"3"}
@@ -117,14 +173,15 @@ const NGORegistrationForm = (props) => {
             value={address}
           />
         </div>
+        <h4 className={"radio-select"}>Your Location?</h4>
         <div className={"uk-margin"}>
-          <input
-            className={"uk-input uk-form-width-large"}
-            type={"text"}
-            placeholder={"Enter Location"}
+          <select
+            className={"uk-select uk-form-width-large"}
             onChange={(e) => setLocation(e.target.value)}
             value={location}
-          />
+          >
+            {renderCityOptions()}
+          </select>
         </div>
         <h4 className={"radio-select"}>Donation details:</h4>
         <div className={"uk-margin"}>
@@ -154,7 +211,15 @@ const NGORegistrationForm = (props) => {
             value={upiId}
           />
         </div>
-
+        <div>
+          <h4 className={"radio-select"}>Choose your Image:</h4>
+          <div
+            className={"uk-grid-match uk-child-width-expand@s uk-text-center"}
+            uk-grid={""}
+          >
+            {renderNGOImages()}
+          </div>
+        </div>
         <h4 className={"signup-mssg"}>
           Changed your mind? {/* eslint-disable-next-line */}
           <a className={"signup-link"} onClick={() => setFormType("User")}>

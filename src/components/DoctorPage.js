@@ -72,6 +72,9 @@ const DoctorPage = (props) => {
   };
 
   const renderReviews = () => {
+    if (doctorReviews.length === 0) {
+      return (<legend>There are no reviews, yet.</legend>)
+    }
     return doctorReviews.map((doctorReview, index) => {
       return (
         <Review

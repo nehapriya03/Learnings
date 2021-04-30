@@ -23,6 +23,28 @@ const DoctorRegistrationForm = (props) => {
 
   const history = useHistory();
 
+  let cityArray = [
+    "New Delhi",
+    "Kolkata",
+    "Bengaluru",
+    "Pune",
+    "Mumbai",
+    "Chennai",
+    "Hyderabad",
+    "Indore",
+    "Patna",
+    "Ranchi",
+    "Lucknow",
+    "Prayagraj",
+    "Ahmedabad",
+    "Agra",
+    "Kanpur",
+    "Jamshedpur",
+    "Srinagar",
+    "Gandhinagar",
+    "Thiruvananthapuram",
+  ];
+
   const handleSubmitClick = async (e) => {
     if (
       firstName === "" ||
@@ -74,11 +96,23 @@ const DoctorRegistrationForm = (props) => {
     history.push("/");
   };
 
+  const renderCityOptions = () => {
+    let array = [];
+    for (let i = 0; i < cityArray.length; i++) {
+      array.push(
+        <option key={i} value={cityArray[i]}>
+          {cityArray[i]}
+        </option>
+      );
+    }
+    return array;
+  };
+
   const renderDoctorImages = () => {
     let array = [];
     for (let i = 0; i < 6; i++) {
       array.push(
-        <div>
+        <div key={i}>
           <img
             src={`/dr-${i + 1}.jpg`}
             alt={"DR"}
@@ -120,43 +154,53 @@ const DoctorRegistrationForm = (props) => {
             value={lastName}
           />
         </div>
+        <h4 className={"radio-select"}>Your Location?</h4>
         <div className={"uk-margin"}>
-          <input
-            className={"uk-input uk-form-width-large"}
-            type={"text"}
-            placeholder={"Enter Location"}
+          <select
+            className={"uk-select uk-form-width-large"}
             onChange={(e) => setLocation(e.target.value)}
             value={location}
-          />
+          >
+            {renderCityOptions()}
+          </select>
         </div>
+        <h4 className={"radio-select"}>Whats your Specialty?</h4>
         <div className={"uk-margin"}>
-          <input
-            className={"uk-input uk-form-width-large"}
-            type={"text"}
-            placeholder={"Enter Specialty"}
+          <select
+            className={"uk-select uk-form-width-large"}
             onChange={(e) => setSpecialty(e.target.value)}
             value={specialty}
-          />
+          >
+            <option value={"Dogs"}>Dogs</option>
+            <option value={"Cats"}>Cats</option>
+            <option value={"Birds"}>Birds</option>
+            <option value={"Rabbits"}>Rabbits</option>
+            <option value={"Others"}>Others</option>
+          </select>
         </div>
         <div className={"uk-margin"}>
           <input
             className={"uk-input uk-form-width-large"}
             type={"number"}
-            placeholder={"Whats your charge"}
+            placeholder={"Whats your charge?"}
             onChange={(e) => setCharge(e.target.value)}
             value={charge}
           />
         </div>
+        <h4 className={"radio-select"}>Your charges are:</h4>
         <div className={"uk-margin"}>
-          <input
-            className={"uk-input uk-form-width-large"}
-            type={"text"}
-            placeholder={"Charge Duration"}
+          <select
+            className={"uk-select uk-form-width-large"}
             onChange={(e) => setChargeDuration(e.target.value)}
             value={chargeDuration}
-          />
+          >
+            <option value={"hr"}>Hourly</option>
+            <option value={"session"}>Per Session</option>
+            <option value={"week"}>Weekly</option>
+            <option value={"month"}>Monthly</option>
+          </select>
         </div>
-        <div class="uk-margin">
+        <div className={"uk-margin"}>
           <textarea
             className={"uk-textarea  uk-form-width-large"}
             rows={"5"}
@@ -168,7 +212,7 @@ const DoctorRegistrationForm = (props) => {
         <div>
           <h4 className={"radio-select"}>Choose your Image:</h4>
           <div
-            class="uk-grid-match uk-child-width-expand@s uk-text-center"
+            className={"uk-grid-match uk-child-width-expand@s uk-text-center"}
             uk-grid={""}
           >
             {renderDoctorImages()}

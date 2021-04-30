@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import StarRatings from "react-star-ratings";
 import "../css/AllPage.css";
 import { GetCaretakersByAvgReview } from "../apis/Caretaker";
 
@@ -32,7 +33,9 @@ const AllCaretakerPage = () => {
     }
   };
 
-  const numberFormatter = new Intl.NumberFormat("en-IN", {
+  const numberFormatter = new Intl.NumberFormat("en-IN");
+
+  const currencyFormatter = new Intl.NumberFormat("en-IN", {
     style: "currency",
     currency: "INR",
   });
@@ -74,7 +77,7 @@ const AllCaretakerPage = () => {
             <div className={"uk-card-media-top"}>
               <img
                 className={"card-image"}
-                src={`/${caretaker.image}`}
+                src={`/${caretaker.picturePath}`}
                 alt={`Caretaker: ${caretaker.firstName} ${caretaker.lastName}`}
                 title={`Caretaker: ${caretaker.firstName} ${caretaker.lastName}`}
               />
@@ -84,21 +87,25 @@ const AllCaretakerPage = () => {
                 Dr. {caretaker.firstName} {caretaker.lastName}
               </h3>
               <h4 className={"charge-box"}>
-                {numberFormatter.format(caretaker.charge)}/
+                {currencyFormatter.format(caretaker.charge)}/
                 {caretaker.chargeDuration}
               </h4>
               <h6 className={"miscellaneous-info"}>
                 Location: {caretaker.location}
               </h6>
-              <h6 className={"miscellaneous-info"}>
-                Specialty: {caretaker.specialty}
-              </h6>
-              <small className={"review-box"}>
-                {caretaker.reviewAvg} ({caretaker.reviewCount} review
-                {(caretaker.reviewCount === 0 || caretaker.reviewCount > 1) &&
-                  "s"}
-                )
-              </small>
+              <div className={"star-section"}>
+                <StarRatings
+                  rating={Number(caretaker.reviewAvg)}
+                  starDimension={"20px"}
+                />
+              </div>
+              <div>
+                <small className={"review-box"}>
+                  {caretaker.reviewAvg?.toFixed(3)} (
+                  {numberFormatter.format(caretaker.reviewCount)} review
+                  {(caretaker.reviewCount === 0 || caretaker.reviewCount > 1) && "s"})
+                </small>
+              </div>
               <p className={"about-box"}>{caretaker.about}</p>
               <div className={"button-box"}>
                 <Link

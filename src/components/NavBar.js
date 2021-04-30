@@ -22,6 +22,7 @@ const NavBar = (props) => {
             <img
               src={`/${user?.picturePath}`}
               className={"nav-dp"}
+              alt={user.name}
             />
             {`Hi, ${user.name.split(" ")[0]}`}
           </a>
