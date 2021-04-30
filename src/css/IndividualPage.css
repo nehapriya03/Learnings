@@ -23,6 +23,7 @@ h1.info-name {
   line-height: 2;
   background: #00000078;
   text-transform: none;
+  margin-left: 5px;
 }
 
 h3.info-charge {
@@ -99,6 +100,10 @@ h3.reviewer-name {
 .not-found-message {
   text-align: center;
   font-size: xx-large;
+}
+
+.address-title {
+  margin: auto;
 }
 
 @media screen and (max-width: 1200px) {

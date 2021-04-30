@@ -7,7 +7,7 @@ const Review = (props) => {
 
   const [isReviewBeingEdited, setIsReviewBeingEdited] = useState(false);
   const [reviewString, setReviewString] = useState(reviewUser.reviewString);
-  const [rating, setRating] = useState(-1);
+  const [rating, setRating] = useState(reviewUser?.rating ?? 2.5);
   const [errorMessage, setErrorMessage] = useState("");
 
   const dateFormatter = new Intl.DateTimeFormat("en-In", {
@@ -140,7 +140,9 @@ const Review = (props) => {
               <StarRatings
                 rating={rating >= 0 ? rating : reviewUser?.rating}
                 changeRating={
-                  isReviewBeingEdited && ((newRating) => setRating(newRating))
+                  isReviewBeingEdited
+                    ? (newRating) => setRating(newRating)
+                    : () => {}
                 }
                 starDimension={"17px"}
                 starHoverColor={"rgb(109, 122, 130)"}
@@ -161,14 +163,16 @@ const Review = (props) => {
           <StarRatings
             rating={rating >= 0 ? rating : reviewUser?.rating}
             changeRating={
-              isReviewBeingEdited && ((newRating) => setRating(newRating))
+              isReviewBeingEdited
+                ? (newRating) => setRating(newRating)
+                : () => {}
             }
             starDimension={"17px"}
             starHoverColor={"rgb(109, 122, 130)"}
           />
         </div>
       </div>
-      <div class={"uk-card-body review-body"}>
+      <div className={"uk-card-body review-body"}>
         {renderReviewOrEditReview()}
         {isReviewBeingEdited ? (
           errorMessage === "" ? (

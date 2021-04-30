@@ -26,7 +26,7 @@ const DoctorPage = (props) => {
     fetchDoctorReviews(doctorId);
   }, [doctorId, props.location]);
 
-  const numberFormatter = new Intl.NumberFormat("en-In");
+  const numberFormatter = new Intl.NumberFormat("en-IN");
 
   const currencyFormatter = new Intl.NumberFormat("en-IN", {
     style: "currency",
@@ -73,7 +73,7 @@ const DoctorPage = (props) => {
 
   const renderReviews = () => {
     if (doctorReviews.length === 0) {
-      return (<legend>There are no reviews, yet.</legend>)
+      return <legend>There are no reviews, yet.</legend>;
     }
     return doctorReviews.map((doctorReview, index) => {
       return (
@@ -159,6 +159,11 @@ const DoctorPage = (props) => {
           {(() => {
             let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
             if (loggedInUser) {
+              if (loggedInUser.user?.targetUserId === doctorId) {
+                return (
+                  <legend>You cannot review your own doctor profile.</legend>
+                );
+              }
               return (
                 <AddReview
                   loggedUser={loggedInUser}

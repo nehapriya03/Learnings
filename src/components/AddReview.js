@@ -27,7 +27,7 @@ const AddReview = (props) => {
       .then(({ data: addedReview }) => {
         setReviews([
           ...reviews,
-          { ...addedReview, reviewData: loggedUser.user },
+          { ...addedReview, reviewerData: [loggedUser.user] },
         ]);
         setReviewString("");
         setErrorMessage("");
@@ -68,7 +68,7 @@ const AddReview = (props) => {
                   : `/pp-default.jpg`
               }
             />
-          </div> 
+          </div>
           <div className={"uk-width-expand"}>
             {errorMessage === "" && (
               <div className={"review-star-div-desktop"}>
@@ -91,16 +91,16 @@ const AddReview = (props) => {
           </div>
         </div>
         <div className={"review-star-div-mobile"}>
-          {/* <StarRatings
+          <StarRatings
             rating={Number(rating)}
             starDimension={"17px"}
             changeRating={(newRating) => setRating(newRating)}
             starHoverColor={"rgb(109, 122, 130)"}
-          /> */}
+          />
         </div>
       </div>
       {errorMessage === "" ? (
-        <div class={"uk-card-body review-body"}>
+        <div className={"uk-card-body review-body"}>
           <textarea
             className={"uk-textarea"}
             rows={"5"}

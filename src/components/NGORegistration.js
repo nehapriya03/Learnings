@@ -53,7 +53,8 @@ const NGORegistrationForm = (props) => {
       about === "" ||
       upiId === "" ||
       bankIFSC === "" ||
-      accountNumber === ""
+      accountNumber === "" ||
+      picturePath === ""
     ) {
       setErrorMessage("Please fill all required fields.");
     }
@@ -67,7 +68,7 @@ const NGORegistrationForm = (props) => {
       upiId,
       bankIFSC,
       accountNumber,
-      errorMessage,
+      picturePath,
     };
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     await AddNGOAPI(ngo)
@@ -119,7 +120,11 @@ const NGORegistrationForm = (props) => {
   };
 
   const renderCityOptions = () => {
-    let array = [];
+    let array = [
+      <option key={-1} value={""}>
+        Select your location
+      </option>,
+    ];
     for (let i = 0; i < cityArray.length; i++) {
       array.push(
         <option key={i} value={cityArray[i]}>
@@ -173,7 +178,6 @@ const NGORegistrationForm = (props) => {
             value={address}
           />
         </div>
-        <h4 className={"radio-select"}>Your Location?</h4>
         <div className={"uk-margin"}>
           <select
             className={"uk-select uk-form-width-large"}

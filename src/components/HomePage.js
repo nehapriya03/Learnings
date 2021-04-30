@@ -4,6 +4,7 @@ import "../css/General.css";
 import dog1 from "../assets/dog1.jpg";
 import cat1 from "../assets/cat1.jpg";
 import rabbit1 from "../assets/rabbit1.jpg";
+import bird1 from "../assets/bird1.jpg";
 import doc1 from "../assets/doc1.jpg";
 import doc2 from "../assets/doc2.jpg";
 import doc3 from "../assets/doc3.jpg";
@@ -95,6 +96,20 @@ const HomePage = () => {
           </li>
           <li>
             <img src={dog1} alt={""} uk-cover={""} />
+            <div
+              className={
+                "uk-position-center uk-position-small uk-text-center uk-light"
+              }
+            >
+              <h2 className={"uk-margin-remove"}>Center</h2>
+              <p className={"uk-margin-remove"}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <img src={bird1} alt={""} uk-cover={""} />
             <div
               className={
                 "uk-position-center uk-position-small uk-text-center uk-light"

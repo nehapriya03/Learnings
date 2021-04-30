@@ -51,7 +51,8 @@ const CaretakerRegistrationForm = (props) => {
       lastName === "" ||
       location === "" ||
       charge === "" ||
-      about === ""
+      about === "" ||
+      picturePath === ""
     ) {
       setErrorMessage("Please fill all required fields.");
     }
@@ -63,6 +64,7 @@ const CaretakerRegistrationForm = (props) => {
       charge,
       chargeDuration,
       about,
+      picturePath,
     };
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     await AddCaretakerAPI(caretaker)
@@ -114,8 +116,11 @@ const CaretakerRegistrationForm = (props) => {
   };
 
   const renderCityOptions = () => {
-    let array = [];
-    for (let i = 0; i < cityArray.length; i++) {
+    let array = [
+      <option key={-1} value={""}>
+        Select your location
+      </option>,
+    ];    for (let i = 0; i < cityArray.length; i++) {
       array.push(
         <option key={i} value={cityArray[i]}>
           {cityArray[i]}
@@ -150,7 +155,6 @@ const CaretakerRegistrationForm = (props) => {
             value={lastName}
           />
         </div>
-        <h4 className={"radio-select"}>Your Location?</h4>
         <div className={"uk-margin"}>
           <select
             className={"uk-select uk-form-width-large"}

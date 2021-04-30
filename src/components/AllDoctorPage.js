@@ -45,9 +45,9 @@ const AllDoctorPage = () => {
   }, []);
 
   const renderLocationCheckboxes = () => {
-    return [...locationSet].map((location) => {
+    return [...locationSet].map((location, index) => {
       return (
-        <div>
+        <div key={index}>
           <label>
             <input
               className={"uk-checkbox"}
