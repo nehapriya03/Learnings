@@ -18,14 +18,14 @@ const NavBar = (props) => {
       <>
         <li>
           {/* eslint-disable-next-line */}
-          <a>
+          <Link to={`/user/${user?.userId}`}>
             <img
               src={`/${user?.picturePath}`}
               className={"nav-dp"}
               alt={user.name}
             />
             {`Hi, ${user.name.split(" ")[0]}`}
-          </a>
+          </Link>
         </li>
         <li>
           {/* eslint-disable-next-line */}

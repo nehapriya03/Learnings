@@ -4,6 +4,10 @@ export const AddNGOAPI = async (ngo) => {
   return await Axios.post("/ngo", ngo);
 };
 
-export const GetNGOsByAvgReview = async (locationArray, ngoId) => {
+export const GetNGOByIdAPI = async (ngoId) => {
+  return await Axios.get(`/ngo/${ngoId}`);
+};
+
+export const GetNGOsByAvgReviewAPI = async (locationArray, ngoId) => {
   return await Axios.post("/ngo/get/review", { locationArray, ngoId });
 };

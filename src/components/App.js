@@ -17,6 +17,7 @@ const CaretakerPage = React.lazy(() => import("./CaretakerPage"));
 const AllDateAndMatePage = React.lazy(() => import("./AllDateAndMatePage"));
 const AllNGOPage = React.lazy(() => import("./AllNGOPage"));
 const NGOPage = React.lazy(() => import("./NGOPage"));
+const ProfilePage = React.lazy(() => import("./ProfilePage"));
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -52,6 +53,7 @@ const App = () => {
             <Route path={"/date-mate"} component={AllDateAndMatePage} />
             <Route path={"/ngo/:ngoId"} component={NGOPage} />
             <Route path={"/ngo"} component={AllNGOPage} />
+            <Route path={"/user/:userId"} component={ProfilePage} />
             <Route path={"*"} component={() => <Redirect to={"/"} />} />
           </Switch>
         </React.Suspense>

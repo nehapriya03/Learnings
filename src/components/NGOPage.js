@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StarRatings from "react-star-ratings";
 import "../css/IndividualPage.css";
-import { GetNGOsByAvgReview } from "../apis/NGO";
+import { GetNGOsByAvgReviewAPI } from "../apis/NGO";
 import { GetUserByTargetUserIdAPI } from "../apis/User";
 import { GetReviewsWithUserDataAPI } from "../apis/Review";
 import AddReview from "./AddReview";
@@ -29,7 +29,7 @@ const NGOPage = (props) => {
   const numberFormatter = new Intl.NumberFormat("en-IN");
 
   const fetchNGO = async (NGOID) => {
-    await GetNGOsByAvgReview([], NGOID)
+    await GetNGOsByAvgReviewAPI([], NGOID)
       .then(({ data: foundNGO }) => {
         setNGO(foundNGO?.[0]);
         setIsNGOFound(true);

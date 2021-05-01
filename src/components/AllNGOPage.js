@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import StarRatings from "react-star-ratings";
 import "../css/AllPage.css";
-import { GetNGOsByAvgReview } from "../apis/NGO";
+import { GetNGOsByAvgReviewAPI } from "../apis/NGO";
 
 let locationSet = new Set();
 let locationToSearchSet = new Set();
@@ -12,7 +12,7 @@ const AllNGOPage = () => {
   const [showFilter, setShowFilter] = useState(true);
 
   const fetchNGOsByLocation = async (locationArray) => {
-    await GetNGOsByAvgReview(locationArray)
+    await GetNGOsByAvgReviewAPI(locationArray)
       .then(({ data: foundNGOs }) => {
         setNGOList(foundNGOs);
       })
