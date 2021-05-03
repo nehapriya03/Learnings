@@ -53,7 +53,10 @@ const App = () => {
             <Route path={"/date-mate"} component={AllDateAndMatePage} />
             <Route path={"/ngo/:ngoId"} component={NGOPage} />
             <Route path={"/ngo"} component={AllNGOPage} />
-            <Route path={"/user/:userId"} component={ProfilePage} />
+            <Route
+              path={"/user/:userId"}
+              component={() => <ProfilePage user={user} setUserMain={setUser} />}
+            />
             <Route path={"*"} component={() => <Redirect to={"/"} />} />
           </Switch>
         </React.Suspense>
