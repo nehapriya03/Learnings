@@ -81,7 +81,7 @@ const ProfilePage = (props) => {
                 case "Caretaker":
                   return <CaretakerProfilePage />;
                 case "NGO":
-                  return <NGOProfilePage />;
+                  return <NGOProfilePage ngoId={user.targetUserId} />;
                 default:
                   return (
                     <UserProfileSection user={user} setUser={setUserMain} />

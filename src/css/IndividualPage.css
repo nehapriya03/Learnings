@@ -14,7 +14,8 @@
 
 .section {
   padding: 10vh 10%;
-  margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 img.profile-pic {
@@ -224,9 +225,9 @@ legend.tab.active {
 }
 
 @media screen and (max-width: 1200px) {
-  .uk-grid > * {
+  /* .uk-grid > * {
     padding-left: 0;
-  }
+  } */
 
   .all-page-card-section {
     padding-left: 30px;
@@ -252,10 +253,6 @@ legend.tab.active {
 
   .close {
     font-size: 20px;
-  }
-
-  .user-section {
-    margin-left: 0;
   }
 
   .choose-img {

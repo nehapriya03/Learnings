@@ -64,6 +64,8 @@ const DoctorProfilePage = (props) => {
       charge: Number(doctorAfterUpdate.charge),
     })
       .then(({ data: updatedDoctor }) => {
+        setDoctor(updatedDoctor);
+        setDoctorAfterUpdate(updatedDoctor);
         setUpdateMessage({
           success: true,
           message: "Your doctor profile was successfully updated.",
@@ -119,7 +121,7 @@ const DoctorProfilePage = (props) => {
             <div>
               <div
                 className={
-                  "uk-grid-match uk-child-width-1-3@s uk-text-center type-page-image"
+                  "uk-grid-match uk-child-width-1-3 uk-text-center type-page-image"
                 }
                 uk-grid={""}
               >
@@ -228,7 +230,18 @@ const DoctorProfilePage = (props) => {
               </div>
               <div className={"uk-margin"}>
                 <label className={"uk-form-label"}>Your location:</label>
-                <select className={"uk-select"}>{renderCityOptions()}</select>
+                <select
+                  className={"uk-select"}
+                  value={doctorAfterUpdate.location}
+                  onChange={(e) =>
+                    setDoctorAfterUpdate({
+                      ...doctorAfterUpdate,
+                      location: e.target.value,
+                    })
+                  }
+                >
+                  {renderCityOptions()}
+                </select>
               </div>
               <div className={"uk-margin"}>
                 <label className={"uk-form-label"}>About:</label>
