@@ -12,7 +12,6 @@ const DoctorProfilePage = (props) => {
     const fetchDoctor = async () => {
       await GetDoctorById(doctorId)
         .then(({ data: foundDoctor }) => {
-          console.info(foundDoctor);
           setDoctor(foundDoctor);
           setDoctorAfterUpdate(foundDoctor);
         })

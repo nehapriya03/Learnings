@@ -11,3 +11,10 @@ export const GetCaretakerByIdAPI = async (caretakerId) => {
 export const GetCaretakersByAvgReview = async (locationArray) => {
   return await Axios.post("/caretaker/get/review", { locationArray });
 };
+
+export const UpdateCaretakerByIdAPI = async (
+  caretakerId,
+  caretakerAfterUpdate
+) => {
+  return await Axios.put(`/caretaker/${caretakerId}`, caretakerAfterUpdate);
+};

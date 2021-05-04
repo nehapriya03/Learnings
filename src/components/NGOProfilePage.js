@@ -12,7 +12,6 @@ const NGOProfilePage = (props) => {
     const fetchNgo = async () => {
       await GetNGOByIdAPI(ngoId)
         .then(({ data: foundNgo }) => {
-          console.info(foundNgo);
           setNgo(foundNgo);
           setNgoAfterUpdate(foundNgo);
         })
@@ -59,7 +58,10 @@ const NGOProfilePage = (props) => {
 
   const onUpdateClick = async (e) => {
     e.preventDefault();
-    await UpdateNGOByIdAPI(ngo.ngoId, ngoAfterUpdate)
+    await UpdateNGOByIdAPI(ngo.ngoId, {
+      ...ngoAfterUpdate,
+      phoneNumber: Number(ngoAfterUpdate.phoneNumber),
+    })
       .then(({ data: updatedNgo }) => {
         setNgo(updatedNgo);
         setNgoAfterUpdate(updatedNgo);

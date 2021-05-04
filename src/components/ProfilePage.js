@@ -79,7 +79,9 @@ const ProfilePage = (props) => {
                 case "Doctor":
                   return <DoctorProfilePage doctorId={user.targetUserId} />;
                 case "Caretaker":
-                  return <CaretakerProfilePage />;
+                  return (
+                    <CaretakerProfilePage caretakerId={user.targetUserId} />
+                  );
                 case "NGO":
                   return <NGOProfilePage ngoId={user.targetUserId} />;
                 default:
