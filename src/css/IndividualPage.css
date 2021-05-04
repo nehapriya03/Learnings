@@ -215,6 +215,14 @@ legend.tab.active {
   border: 1px solid #999;
 }
 
+.type-page-image {
+  padding: 3vh 0;
+}
+
+.type-image.selected {
+  border: 1.5px solid red;
+}
+
 @media screen and (max-width: 1200px) {
   .uk-grid > * {
     padding-left: 0;

@@ -47,8 +47,8 @@ const ProfilePage = (props) => {
               </div>
             </div>
             {userType !== null && (
-              <div class="uk-margin-medium-top">
-                <ul class="uk-flex-center" uk-tab={""}>
+              <div className={"uk-margin-medium-top"}>
+                <ul className={"uk-flex-center"} uk-tab={""}>
                   <li>
                     <legend
                       className={

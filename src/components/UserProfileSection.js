@@ -98,10 +98,10 @@ const UserProfileSection = (props) => {
                 uk-icon={"icon: pencil; ratio: 1"}
                 onClick={() => setIsImageModalOpen(true)}
               />
-              <div id={"myModal"} class="modal" hidden={!isImageModalOpen}>
-                <div class="modal-content">
+              <div id={"myModal"} className={"modal"} hidden={!isImageModalOpen}>
+                <div className={"modal-content"}>
                   <span
-                    class="close"
+                    className={"close"}
                     onClick={() => setIsImageModalOpen(false)}
                   >
                     &times;
@@ -126,7 +126,7 @@ const UserProfileSection = (props) => {
                 <label className={"uk-form-label"}>Name:</label>
                 <div className={"uk-form-controls"}>
                   <input
-                    class={"uk-input"}
+                    className={"uk-input"}
                     type={"text"}
                     placeholder={"Your name"}
                     value={name}
@@ -138,7 +138,7 @@ const UserProfileSection = (props) => {
                 <label className={"uk-form-label"}>Phone Number:</label>
                 <div className={"uk-form-controls"}>
                   <input
-                    class={"uk-input"}
+                    className={"uk-input"}
                     type={"number"}
                     placeholder={"Your name"}
                     value={phoneNumber}
