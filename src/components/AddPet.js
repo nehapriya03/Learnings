@@ -1,18 +1,38 @@
 import React, { useState } from "react";
 import { AddPetAPI } from "../apis/Pet";
-import "../css/IndividualPage.css"
+import "../css/IndividualPage.css";
 
 const AddPet = (props) => {
   const { user, userPetList, setUserPetList } = props;
   const [pet, setPet] = useState({ animalType: "Dog", location: "New Delhi" });
+  const [updateMessage, setUpdateMessage] = useState({});
+
+  const isEmpty = (val) => {
+    return val === undefined || val == null || val.length <= 0 ? true : false;
+  };
 
   const onSubmitClick = async (e) => {
     e.preventDefault();
-    await AddPetAPI({ ...pet, ownerId: user.userId })
-      .then(({ data: addedPet }) => {
-        setUserPetList(...userPetList, addedPet);
-      })
-      .catch((error) => console.error(error));
+    if (
+      isEmpty(pet.name) ||
+      isEmpty(pet.medicalHistory) ||
+      isEmpty(pet.breed) ||
+      isEmpty(pet.picturePath) ||
+      isEmpty(pet.mateStatus) ||
+      isEmpty(pet.gender)
+    ) {
+      setUpdateMessage({ success: false, message: "Please fill all fields." });
+    } else {
+      await AddPetAPI({ ...pet, ownerId: user.userId })
+        .then(({ data: addedPet }) => {
+          setUserPetList([...userPetList, addedPet]);
+          setUpdateMessage({
+            success: true,
+            message: "Your new pet was successfully added.",
+          });
+        })
+        .catch((error) => console.error(error));
+    }
   };
 
   let cityArray = [
@@ -226,6 +246,16 @@ const AddPet = (props) => {
                 </label>
               </div>
             </div>
+            {Object.keys(updateMessage).length > 0 &&
+              (!updateMessage.success ? (
+                <div className={"uk-alert-danger"} uk-alert={""} key={1}>
+                  <p>{updateMessage.message}</p>
+                </div>
+              ) : (
+                <div className={"uk-alert-success"} uk-alert={""} key={2}>
+                  <p>{updateMessage.message}</p>
+                </div>
+              ))}
             <div className={"uk-margin"}>
               <button
                 className={"submit-button"}

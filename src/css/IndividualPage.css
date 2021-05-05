@@ -236,6 +236,10 @@ img.pet-image {
   border: 2px solid red !important;
 }
 
+.pet-image-box {
+  margin-bottom: 3vh;
+}
+
 @media screen and (max-width: 1200px) {
   /* .uk-grid > * {
     padding-left: 0;

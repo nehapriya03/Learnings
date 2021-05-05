@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { GetPetsByOwnerIdAPI } from "../apis/Pet";
 import "../css/AllPage.css";
 import "../css/General.css";
@@ -11,28 +11,33 @@ const UserPetSection = (props) => {
   const [selectedPage, setSelectedPage] = useState("ALL");
   const [userPetList, setUserPetList] = useState([]);
 
+  const history = useHistory();
+
   useEffect(() => {
-    const fetchPetsByOwnerId = async () => {
-      await GetPetsByOwnerIdAPI(user.userId)
-        .then(({ data: foundPets }) => {
-          console.info(foundPets);
-          setUserPetList(foundPets);
-          setFetchMessage({
-            success: true,
-            message: "Pets successfully fetched.",
-          });
-        })
-        .catch((error) => {
-          if (error.response.status === 404) {
+    if (user === null) {
+      history.push("/");
+    } else {
+      const fetchPetsByOwnerId = async () => {
+        await GetPetsByOwnerIdAPI(user.userId)
+          .then(({ data: foundPets }) => {
+            setUserPetList(foundPets);
             setFetchMessage({
-              success: false,
-              message: "You haven't added any pets yet.",
+              success: true,
+              message: "Pets successfully fetched.",
             });
-          }
-        });
-    };
-    fetchPetsByOwnerId();
-  }, [user.userId]);
+          })
+          .catch((error) => {
+            if (error.response.status === 404) {
+              setFetchMessage({
+                success: false,
+                message: "You haven't added any pets yet.",
+              });
+            }
+          });
+      };
+      fetchPetsByOwnerId();
+    }
+  }, [history, user]);
 
   const renderContent = () => {
     if (selectedPage === "ADD") {
@@ -80,15 +85,13 @@ const UserPetSection = (props) => {
                           <div className={"button-box"}>
                             <Link
                               to={{
-                                pathname: `/pet/${pet.petId}`,
+                                pathname: `/pet/${pet.petId}/${user.userId}`,
                                 state: {
                                   pet: pet,
                                 },
                               }}
                             >
-                              <button className={"section-button"}>
-                                Edit
-                              </button>
+                              <button className={"section-button"}>Edit</button>
                             </Link>
                           </div>
                         </div>

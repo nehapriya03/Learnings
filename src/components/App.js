@@ -19,6 +19,7 @@ const AllNGOPage = React.lazy(() => import("./AllNGOPage"));
 const NGOPage = React.lazy(() => import("./NGOPage"));
 const ProfilePage = React.lazy(() => import("./ProfilePage"));
 const UserAllPetsPage = React.lazy(() => import("./UserPetSection"));
+const EditReactPage = React.lazy(() => import("./EditPetPage"));
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -63,6 +64,10 @@ const App = () => {
             <Route
               path={"/my-pets"}
               component={() => <UserAllPetsPage user={user} />}
+            />
+            <Route
+              path={"/pet/:petId/:userId"}
+              component={() => <EditReactPage user={user} />}
             />
             <Route path={"*"} component={() => <Redirect to={"/"} />} />
           </Switch>
