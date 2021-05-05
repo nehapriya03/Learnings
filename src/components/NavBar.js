@@ -28,6 +28,9 @@ const NavBar = (props) => {
           </Link>
         </li>
         <li>
+          <Link to={"/my-pets"}>My Pets</Link>
+        </li>
+        <li>
           {/* eslint-disable-next-line */}
           <a
             onClick={() => {

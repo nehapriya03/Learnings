@@ -268,7 +268,6 @@ const DoctorProfilePage = (props) => {
             </form>
           </div>
         </div>
-        {/* <h1>Doctor Profile Page {doctor.doctorId}</h1> */}
       </div>
     );
   })();

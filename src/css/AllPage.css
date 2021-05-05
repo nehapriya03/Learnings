@@ -108,9 +108,28 @@ img.card-image {
   width: 100%;
 }
 
+.uk-tab::before {
+  display: none;
+}
+
+legend.tab {
+  padding: 5px 15px 5px 15px;
+  cursor: pointer;
+}
+
+legend.tab.active {
+  background-color: #888;
+  border-radius: 5px;
+  color: #fff;
+}
+
 @media screen and (max-width: 1200px) {
   .uk-grid > * {
     padding-left: 0;
+  }
+
+  .pet-card {
+    margin-left: 0;
   }
 
   .all-page-card-section {

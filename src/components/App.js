@@ -18,6 +18,7 @@ const AllDateAndMatePage = React.lazy(() => import("./AllDateAndMatePage"));
 const AllNGOPage = React.lazy(() => import("./AllNGOPage"));
 const NGOPage = React.lazy(() => import("./NGOPage"));
 const ProfilePage = React.lazy(() => import("./ProfilePage"));
+const UserAllPetsPage = React.lazy(() => import("./UserPetSection"));
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -55,7 +56,13 @@ const App = () => {
             <Route path={"/ngo"} component={AllNGOPage} />
             <Route
               path={"/user/:userId"}
-              component={() => <ProfilePage user={user} setUserMain={setUser} />}
+              component={() => (
+                <ProfilePage user={user} setUserMain={setUser} />
+              )}
+            />
+            <Route
+              path={"/my-pets"}
+              component={() => <UserAllPetsPage user={user} />}
             />
             <Route path={"*"} component={() => <Redirect to={"/"} />} />
           </Switch>

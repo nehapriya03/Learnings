@@ -224,6 +224,18 @@ legend.tab.active {
   border: 1.5px solid red;
 }
 
+.pet-welcome-message {
+  text-align: center;
+  font-family: "Coming Soon";
+  font-size: xx-large;
+  font-weight: bold;
+  padding-bottom: 2vh;
+}
+
+img.pet-image {
+  border: 2px solid red !important;
+}
+
 @media screen and (max-width: 1200px) {
   /* .uk-grid > * {
     padding-left: 0;
