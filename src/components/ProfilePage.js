@@ -17,13 +17,13 @@ const ProfilePage = (props) => {
 
   useEffect(() => {
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
     if (loggedInUser === null || loggedInUser.user.userId !== userId) {
       history.push("/");
     } else {
       fetchUser(userId);
+      document.title = `Welcome ${user?.name?.split(" ")[0]} | Philozooic`
     }
-  }, [history, userId]);
+  }, [history, user?.name, userId]);
 
   const fetchUser = async (userID) => {
     await GetUserById(userID)

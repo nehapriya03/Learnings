@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../css/General.css";
 import dog1 from "../assets/dog1.jpg";
@@ -68,6 +68,11 @@ const ngoSlider = () => {
 };
 
 const HomePage = () => {
+
+  useEffect(() => {
+    document.title = "Welcome to Philozooic";
+  });
+
   return (
     <>
       <div

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AddPetAPI } from "../apis/Pet";
 import "../css/IndividualPage.css";
 
@@ -6,6 +6,10 @@ const AddPet = (props) => {
   const { user, userPetList, setUserPetList } = props;
   const [pet, setPet] = useState({ animalType: "Dog", location: "New Delhi" });
   const [updateMessage, setUpdateMessage] = useState({});
+
+  useEffect(() => {
+    document.title = "Add Pet | Philozooic";
+  }, []);
 
   const isEmpty = (val) => {
     return val === undefined || val == null || val.length <= 0 ? true : false;

@@ -36,6 +36,11 @@
   margin-bottom: auto;
 }
 
+.not-found-message {
+  text-align: center;
+  font-size: x-large;
+}
+
 .charge-box {
   margin: auto;
   text-align: center;
@@ -94,11 +99,13 @@ h6.miscellaneous-info {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.219);
 }
 
-input[type="checkbox"]:checked {
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
   background-color: #000 !important;
 }
 
-input[type="checkbox"]:active {
+input[type="checkbox"]:active,
+input[type="radio"]:active {
   border: 1px solid #000;
 }
 

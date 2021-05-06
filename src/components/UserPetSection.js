@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { GetPetsByOwnerIdAPI } from "../apis/Pet";
 import "../css/AllPage.css";
-import "../css/General.css";
 import AddPet from "./AddPet";
 
 const UserPetSection = (props) => {
@@ -17,6 +16,7 @@ const UserPetSection = (props) => {
     if (user === null) {
       history.push("/");
     } else {
+      document.title = `${user.name.split(" ")[0]}'s Pets | Philozooic`;
       const fetchPetsByOwnerId = async () => {
         await GetPetsByOwnerIdAPI(user.userId)
           .then(({ data: foundPets }) => {

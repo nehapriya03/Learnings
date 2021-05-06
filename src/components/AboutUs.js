@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../css/General.css";
 import logo from "../assets/philozooic.png";
 
 const AboutUs = () => {
+  useEffect(() => {
+    document.title = "About Us | Philozooic";
+  });
+
   return (
     <>
       <div className={"section"}>
