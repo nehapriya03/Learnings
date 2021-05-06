@@ -69,7 +69,7 @@ const AllDateAndMatePage = () => {
             <div className={"uk-card-media-top"}>
               <img
                 className={"card-image"}
-                src={`/${pet.image}`}
+                src={`/${pet.picturePath}`}
                 alt={`Pet: ${pet.animalType} ${pet.breed}`}
                 title={`Pet: ${pet.animalType} ${pet.breed}`}
               />
@@ -78,9 +78,6 @@ const AllDateAndMatePage = () => {
               <h3 className={"uk-card-title name"}>
                 {pet.animalType} ({pet.breed})
               </h3>
-              {/* <h4 className={"charge-box"}>
-                {numberFormatter.format(pet.charge)}/{pet.chargeDuration}
-              </h4> */}
               <h6 className={"miscellaneous-info"}>Location: {pet.location}</h6>
               <h6 className={"miscellaneous-info"}>
                 {pet.mateStatus ? "Available to Mate" : "Unavailable to Mate"}
@@ -89,7 +86,7 @@ const AllDateAndMatePage = () => {
                 {pet.reviewAvg} ({pet.reviewCount} review
                 {(pet.reviewCount === 0 || pet.reviewCount > 1) && "s"})
               </small>
-              {/* <p className={"about-box"}>{pet.about}</p> */}
+              <br />
               <div className={"button-box"}>
                 <Link
                   to={{

@@ -15,3 +15,7 @@ export const GetPetsByOwnerIdAPI = async (ownerId) => {
 export const GetPetsByAvgReviewsAPI = async (locationArray) => {
   return await Axios.post("/pet/get/review", { locationArray });
 };
+
+export const UpdatePetByIdAPI = async (petId, pet) => {
+  return await Axios.put(`/pet/${petId}`, pet);
+};

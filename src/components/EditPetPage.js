@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { GetPetByIdAPI } from "../apis/Pet";
+import { GetPetByIdAPI, UpdatePetByIdAPI } from "../apis/Pet";
 import "../css/IndividualPage.css";
 
 const EditReactPage = (props) => {
@@ -8,9 +8,14 @@ const EditReactPage = (props) => {
   const [userPet, setUserPet] = useState({});
   const [userPetAfterUpdate, setUserPetAfterUpdate] = useState({});
   const [fetchMessage, setFetchMessage] = useState({});
+  const [updateMessage, setUpdateMessage] = useState({});
 
   const history = useHistory();
   const { userId: pathUserId, petId: pathPetId } = useParams();
+
+  const isEmpty = (val) => {
+    return val === undefined || val == null || val.length <= 0 ? true : false;
+  };
 
   useEffect(() => {
     if (user === null || pathUserId !== user.userId) {
@@ -38,6 +43,32 @@ const EditReactPage = (props) => {
       fetchPet();
     }
   }, [history, pathPetId, pathUserId, user]);
+
+  const onSubmitClick = async (e) => {
+    e.preventDefault();
+    if (
+      isEmpty(userPetAfterUpdate.name) ||
+      isEmpty(userPetAfterUpdate.medicalHistory) ||
+      isEmpty(userPetAfterUpdate.breed) ||
+      isEmpty(userPetAfterUpdate.picturePath) ||
+      isEmpty(userPetAfterUpdate.mateStatus) ||
+      isEmpty(userPetAfterUpdate.gender)
+    ) {
+      setUpdateMessage({ success: false, message: "Please fill all fields." });
+    } else {
+      await UpdatePetByIdAPI(userPet.petId, userPetAfterUpdate)
+        .then(({ data: updatedPet }) => {
+          console.info(updatedPet);
+          setUserPet(updatedPet);
+          setUserPetAfterUpdate(updatedPet);
+          setUpdateMessage({
+            success: true,
+            message: "Your pet was successfully updated.",
+          });
+        })
+        .catch((error) => console.error(error));
+    }
+  };
 
   let cityArray = [
     "New Delhi",
@@ -82,7 +113,7 @@ const EditReactPage = (props) => {
           </div>
         </div>
         <div className={"section"}>
-          <div className={"uk-grid"}>
+          <div className={"pet-card"} uk-grid={""}>
             <div className={"uk-width-2-5@l"}>
               <div className={"pet-image-box"}>
                 <img
@@ -105,9 +136,7 @@ const EditReactPage = (props) => {
                             <img
                               className={
                                 userPetAfterUpdate.picturePath ===
-                                `pet-${i + 1}.jpg`
-                                  ? "pet-image"
-                                  : ""
+                                  `pet-${i + 1}.jpg` && "pet-image"
                               }
                               src={`/pet-${i + 1}.jpg`}
                               alt={"Pet"}
@@ -128,16 +157,204 @@ const EditReactPage = (props) => {
                 <div
                   class="uk-position-center-left uk-position-small uk-hidden-hover"
                   uk-slidenav-previous={""}
-                  uk-slider-item="previous"
+                  uk-slider-item={"previous"}
                 />
                 <diva
                   class="uk-position-center-right uk-position-small uk-hidden-hover"
                   uk-slidenav-next={""}
-                  uk-slider-item="next"
+                  uk-slider-item={"next"}
                 />
               </div>
             </div>
-            <div className={"uk-width-3-5@l"}>2</div>
+            <div className={"uk-width-3-5@l"}>
+              <form>
+                <div className={"uk-margin"}>
+                  <label className={"uk-form-label"}>Pet Name:</label>
+                  <div className={"uk-form-controls"}>
+                    <input
+                      className={"uk-input"}
+                      type={"text"}
+                      placeholder={"Pet Name"}
+                      value={userPetAfterUpdate.name}
+                      onChange={(e) =>
+                        setUserPetAfterUpdate({
+                          ...userPetAfterUpdate,
+                          name: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+                <div className={"uk-margin"}>
+                  <label className={"uk-form-label"}>
+                    Which animal is your pet?
+                  </label>
+                  <div className={"uk-form-controls"}>
+                    <select
+                      className={"uk-select"}
+                      onChange={(e) =>
+                        setUserPetAfterUpdate({
+                          ...userPetAfterUpdate,
+                          animalType: e.target.value,
+                        })
+                      }
+                      value={userPetAfterUpdate.animalType}
+                    >
+                      <option value={"Dog"}>Dog</option>
+                      <option value={"Cat"}>Cat</option>
+                      <option value={"Bird"}>Bird</option>
+                      <option value={"Rabbit"}>Rabbit</option>
+                      <option value={"Other"}>Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div className={"uk-margin"}>
+                  <label className={"uk-form-label"}>Pet Breed:</label>
+                  <div className={"uk-form-controls"}>
+                    <input
+                      className={"uk-input"}
+                      type={"text"}
+                      placeholder={"Pet Breed"}
+                      value={userPetAfterUpdate.breed}
+                      onChange={(e) =>
+                        setUserPetAfterUpdate({
+                          ...userPetAfterUpdate,
+                          breed: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+                <div className={"uk-margin"}>
+                  <label className={"uk-form-label"}>Medical History:</label>
+                  <div className={"uk-form-controls"}>
+                    <textarea
+                      className={"uk-textarea"}
+                      rows={"5"}
+                      placeholder={"Medical History"}
+                      value={userPetAfterUpdate.medicalHistory}
+                      onChange={(e) =>
+                        setUserPetAfterUpdate({
+                          ...userPetAfterUpdate,
+                          medicalHistory: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+                <div className={"uk-margin"}>
+                  <label className={"uk-form-label"}>Location:</label>
+                  <div className={"uk-form-controls"}>
+                    <select
+                      className={"uk-select"}
+                      value={userPetAfterUpdate.location}
+                      onChange={(e) =>
+                        setUserPetAfterUpdate({
+                          ...userPetAfterUpdate,
+                          location: e.target.value,
+                        })
+                      }
+                    >
+                      {renderCityOptions()}
+                    </select>
+                  </div>
+                </div>
+                <div className={"uk-margin"}>
+                  <div className={"uk-form-label"}>Is ready to mate/date?</div>
+                  <div className={"uk-form-controls"}>
+                    <label>
+                      <input
+                        className={"uk-radio"}
+                        type={"radio"}
+                        name={"mateStatus"}
+                        value={true}
+                        checked={userPetAfterUpdate.mateStatus === true}
+                        onChange={(e) =>
+                          setUserPetAfterUpdate({
+                            ...userPetAfterUpdate,
+                            mateStatus: true,
+                          })
+                        }
+                      />
+                      {" Yes"}
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        class={"uk-radio"}
+                        type={"radio"}
+                        name={"mateStatus"}
+                        value={false}
+                        checked={userPetAfterUpdate.mateStatus === false}
+                        onChange={(e) =>
+                          setUserPetAfterUpdate({
+                            ...userPetAfterUpdate,
+                            mateStatus: false,
+                          })
+                        }
+                      />
+                      {" No"}
+                    </label>
+                  </div>
+                </div>
+                <div className={"uk-margin"}>
+                  <div className={"uk-form-label"}>Gender:</div>
+                  <div className={"uk-form-controls"}>
+                    <label>
+                      <input
+                        className={"uk-radio"}
+                        type={"radio"}
+                        name={"gender"}
+                        value={"Male"}
+                        checked={userPetAfterUpdate.gender === "Male"}
+                        onChange={(e) =>
+                          setUserPetAfterUpdate({
+                            ...userPetAfterUpdate,
+                            gender: "Male",
+                          })
+                        }
+                      />
+                      {" Male"}
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        class={"uk-radio"}
+                        type={"radio"}
+                        name={"gender"}
+                        value={"Female"}
+                        checked={userPetAfterUpdate.gender === "Female"}
+                        onChange={(e) =>
+                          setUserPetAfterUpdate({
+                            ...userPetAfterUpdate,
+                            gender: "Female",
+                          })
+                        }
+                      />
+                      {" Female"}
+                    </label>
+                  </div>
+                </div>
+                {Object.keys(updateMessage).length > 0 &&
+                  (!updateMessage.success ? (
+                    <div className={"uk-alert-danger"} uk-alert={""} key={1}>
+                      <p>{updateMessage.message}</p>
+                    </div>
+                  ) : (
+                    <div className={"uk-alert-success"} uk-alert={""} key={2}>
+                      <p>{updateMessage.message}</p>
+                    </div>
+                  ))}
+                <div className={"uk-margin"}>
+                  <button
+                    className={"submit-button"}
+                    onClick={(e) => onSubmitClick(e)}
+                  >
+                    Update Pet
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </>

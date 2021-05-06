@@ -91,9 +91,8 @@ const AddPet = (props) => {
                       <div className={"uk-panel"}>
                         <img
                           className={
-                            pet.picturePath === `pet-${i + 1}.jpg`
-                              ? "pet-image"
-                              : ""
+                            pet.picturePath === `pet-${i + 1}.jpg` &&
+                            "pet-image"
                           }
                           src={`/pet-${i + 1}.jpg`}
                           alt={"Pet"}
