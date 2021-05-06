@@ -15,6 +15,7 @@ const DoctorPage = React.lazy(() => import("./DoctorPage"));
 const AllCaretakerPage = React.lazy(() => import("./AllCaretakerPage"));
 const CaretakerPage = React.lazy(() => import("./CaretakerPage"));
 const AllDateAndMatePage = React.lazy(() => import("./AllDateAndMatePage"));
+const DateAndMatePage = React.lazy(() => import("./DateAndMatePage"));
 const AllNGOPage = React.lazy(() => import("./AllNGOPage"));
 const NGOPage = React.lazy(() => import("./NGOPage"));
 const ProfilePage = React.lazy(() => import("./ProfilePage"));
@@ -52,6 +53,7 @@ const App = () => {
             <Route path={"/doctor"} component={AllDoctorPage} />
             <Route path={"/caretaker/:caretakerId"} component={CaretakerPage} />
             <Route path={"/caretaker"} component={AllCaretakerPage} />
+            <Route path={"/date-mate/:petId"} component={DateAndMatePage} />
             <Route path={"/date-mate"} component={AllDateAndMatePage} />
             <Route path={"/ngo/:ngoId"} component={NGOPage} />
             <Route path={"/ngo"} component={AllNGOPage} />

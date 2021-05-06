@@ -155,7 +155,7 @@ const AllDateAndMatePage = () => {
                   <div className={"button-box"}>
                     <Link
                       to={{
-                        pathname: `/pet/${pet.petId}`,
+                        pathname: `/date-mate/${pet.petId}`,
                         state: {
                           tempPet: pet,
                         },

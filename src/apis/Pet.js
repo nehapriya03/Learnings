@@ -12,10 +12,10 @@ export const GetPetsByOwnerIdAPI = async (ownerId) => {
   return await Axios.get(`/pet/by_owner/${ownerId}`);
 };
 
-export const GetPetsByAvgReviewsAPI = async (locationArray, mateStatus) => {
+export const GetPetsByAvgReviewsAPI = async (locationArray, mateStatus, petId) => {
   return await Axios.post(
     "/pet/get/review",
-    { locationArray },
+    { locationArray, petId },
     { params: { mateStatus } }
   );
 };
