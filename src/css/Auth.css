@@ -1,0 +1,120 @@
+.login-form,
+.login-s-form {
+  background-color: black;
+  text-align: center;
+  min-height: 55vh;
+  padding: 35vh 10% 10vh 10%;
+}
+
+.login-text {
+  font-family: "Coming Soon";
+  color: white;
+}
+
+.login-button {
+  background-color: white;
+  padding: 10px 20px;
+  font-family: "Open Sans";
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.signup-mssg {
+  color: #fff;
+  font-size: small;
+}
+
+.error-mssg {
+  color: #fb5a5a;
+  background: #350404;
+  margin: 0 30%;
+}
+
+a.signup-link {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+  background-color: rgb(16, 24, 139);
+  padding: 10px 20px;
+  font-size: small;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+a.signup-link:hover {
+  background-color: rgb(7, 14, 109);
+}
+
+.radio-section {
+  justify-content: center;
+}
+
+h4.radio-select {
+  color: #fff;
+  font-style: italic;
+}
+
+.radio-section > label {
+  color: #fff;
+}
+
+.image-section {
+  background-color: black;
+  text-align: center;
+  min-height: 55vh;
+  padding: 25vh 5% 10vh 5%;
+}
+
+.uk-border-circle {
+  cursor: pointer;
+  width: 12%;
+}
+
+img.photo-selected {
+  border: 4px solid red;
+}
+
+.phone-signup-section {
+  display: none;
+}
+
+.type-image {
+  cursor: pointer;
+}
+
+.type-image.selected {
+  cursor: pointer;
+  border: 2px solid red;
+}
+
+@media screen and (max-width: 1200px) {
+  .image-section {
+    background-color: black;
+    text-align: center;
+    min-height: 55vh;
+    padding: 0 5% 2vh 12%;
+  }
+
+  .login-s-form {
+    background-color: black;
+    text-align: center;
+    min-height: 55vh;
+    padding: 10vh 10% 0 10%;
+  }
+
+  .uk-border-circle {
+    cursor: pointer;
+    width: 18.5%;
+  }
+
+  .phone-signup-section {
+    display: block;
+    background-color: #000;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .desktop-signup-section {
+    display: none;
+  }
+}

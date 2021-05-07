@@ -1,0 +1,75 @@
+.navbar-cont {
+  background-color: black;
+  padding: 0 10%;
+}
+
+.navbar {
+  justify-content: flex-end;
+}
+
+.logo-image-box {
+  position: absolute;
+  left: 0;
+}
+
+.logo-image-box h6.company-name {
+  color: #999;
+  margin: auto;
+  margin-left: 1vw;
+  margin-top: auto;
+  font-family: "Coming Soon";
+  font-size: 20px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.logo-image-box > a:hover {
+  text-decoration: none;
+}
+
+.logo-image-box h6.company-name:hover {
+  color: #fff;
+}
+
+.logo-image-box img.logo-img {
+  width: 65px;
+}
+
+.search-box-div {
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  width: 40%;
+}
+
+.search-box::placeholder {
+  text-align: center;
+}
+
+.nav-dp {
+  width: 30px;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+.phone-nav {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .phone-nav {
+    background-color: black !important;
+    margin-bottom: 0;
+    display: flex;
+  }
+
+  .phone-nav .phone-nav-logo-box img.logo-img {
+    width: 50px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+}
