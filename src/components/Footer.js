@@ -7,13 +7,13 @@ const Footer = () => {
   return (
     <>
       <div className={"footer-section"}>
-        <div uk-grid={""}>
+        <div uk-grid={""} className={"footer-grid"}>
           <div className={"uk-width-1-3@m"}>
             <img src={logo} alt={"Philozooic Logo"} className={"footer-logo"} />
             <h2 className={"company-name"}>Philozooic</h2>
           </div>
           <div className={"uk-width-1-3@m links-section"}>
-            <ul class="uk-nav-primary uk-nav-parent-icon" uk-nav={""}>
+            <ul className={"uk-nav-primary uk-nav-parent-icon"} uk-nav={""}>
               <li>
                 <Link to={"/about-us"}>
                   <span className={"footer-link"}>About Us</span>

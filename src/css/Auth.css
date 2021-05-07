@@ -1,6 +1,6 @@
 .login-form,
 .login-s-form {
-  background-color: black;
+  background-color: #29bb89;
   text-align: center;
   min-height: 55vh;
   padding: 35vh 10% 10vh 10%;
@@ -34,7 +34,7 @@
 a.signup-link {
   color: rgb(255, 255, 255);
   text-decoration: underline;
-  background-color: rgb(16, 24, 139);
+  background-color: #005c3c;
   padding: 10px 20px;
   font-size: small;
   border-radius: 10px;
@@ -42,7 +42,7 @@ a.signup-link {
 }
 
 a.signup-link:hover {
-  background-color: rgb(7, 14, 109);
+  background-color: #023121;;
 }
 
 .radio-section {
@@ -59,7 +59,7 @@ h4.radio-select {
 }
 
 .image-section {
-  background-color: black;
+  background-color: #29bb89;
   text-align: center;
   min-height: 55vh;
   padding: 25vh 5% 10vh 5%;
@@ -89,14 +89,14 @@ img.photo-selected {
 
 @media screen and (max-width: 1200px) {
   .image-section {
-    background-color: black;
+    background-color: #29bb89;
     text-align: center;
     min-height: 55vh;
     padding: 0 5% 2vh 12%;
   }
 
   .login-s-form {
-    background-color: black;
+    background-color: #29bb89;
     text-align: center;
     min-height: 55vh;
     padding: 10vh 10% 0 10%;
@@ -109,7 +109,7 @@ img.photo-selected {
 
   .phone-signup-section {
     display: block;
-    background-color: #000;
+    background-color: #29bb89;
     text-align: center;
     padding: 20px;
   }

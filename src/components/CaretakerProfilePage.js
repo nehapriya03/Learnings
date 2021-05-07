@@ -108,7 +108,7 @@ const CaretakerProfilePage = (props) => {
     }
     return (
       <div className={"section"}>
-        <div uk-grid={""}>
+        <div uk-grid={""} className={"individual-grid"}>
           <div className={"uk-width-2-5@l"}>
             <div>
               <img

@@ -10,7 +10,9 @@ const NavBar = (props) => {
     if (user === null || typeof user === "undefined") {
       return (
         <li>
-          <Link to={"/login"}>Login</Link>
+          <Link to={"/login"} className={"nav-item"}>
+            Login
+          </Link>
         </li>
       );
     }
@@ -18,7 +20,7 @@ const NavBar = (props) => {
       <>
         <li>
           {/* eslint-disable-next-line */}
-          <Link to={`/user/${user?.userId}`}>
+          <Link to={`/user/${user?.userId}`} className={"nav-item"}>
             <img
               src={`/${user?.picturePath}`}
               className={"nav-dp"}
@@ -28,11 +30,14 @@ const NavBar = (props) => {
           </Link>
         </li>
         <li>
-          <Link to={"/my-pets"}>My Pets</Link>
+          <Link to={"/my-pets"} className={"nav-item"}>
+            My Pets
+          </Link>
         </li>
         <li>
           {/* eslint-disable-next-line */}
           <a
+            className={"nav-item"}
             onClick={() => {
               localStorage.clear();
               setUser(null);
@@ -76,7 +81,9 @@ const NavBar = (props) => {
               <div uk-dropdown={"mode: click"}>
                 <ul className={"uk-nav uk-dropdown-nav"}>
                   <li>
-                    <Link to={"/about-us"}>About Us</Link>
+                    <Link to={"/about-us"} className={"nav-item"}>
+                      About Us
+                    </Link>
                   </li>
                   {showAuthPart()}
                 </ul>
@@ -119,14 +126,16 @@ const NavBar = (props) => {
                       alt={"Philozooic Logo"}
                     />
                   </Link>
-                  <Link to={"/"}>
+                  <Link to={"/"} className={"nav-item"}>
                     <h6 className={"company-name"}>Philozooic</h6>
                   </Link>
                 </div>
 
                 <ul className={"uk-navbar-nav"}>
                   <li>
-                    <Link to={"/about-us"}>About Us</Link>
+                    <Link to={"/about-us"} className={"nav-item"}>
+                      About Us
+                    </Link>
                   </li>
                   {showAuthPart()}
                 </ul>

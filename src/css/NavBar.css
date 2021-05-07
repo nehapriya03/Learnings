@@ -1,5 +1,5 @@
 .navbar-cont {
-  background-color: black;
+  background-color: #29bb89;
   padding: 0 10%;
 }
 
@@ -13,7 +13,7 @@
 }
 
 .logo-image-box h6.company-name {
-  color: #999;
+  color: #fff;
   margin: auto;
   margin-left: 1vw;
   margin-top: auto;
@@ -25,10 +25,6 @@
 
 .logo-image-box > a:hover {
   text-decoration: none;
-}
-
-.logo-image-box h6.company-name:hover {
-  color: #fff;
 }
 
 .logo-image-box img.logo-img {
@@ -58,11 +54,19 @@
   display: none;
 }
 
+.nav-item {
+  color: #fff !important;
+}
+
 @media screen and (max-width: 800px) {
   .phone-nav {
-    background-color: black !important;
+    background-color: #29bb89 !important;
     margin-bottom: 0;
     display: flex;
+  }
+
+  .phone-nav .nav-item {
+    color: #29bb89 !important;
   }
 
   .phone-nav .phone-nav-logo-box img.logo-img {
@@ -71,5 +75,9 @@
 
   .desktop-nav {
     display: none;
+  }
+
+  .uk-navbar-toggle {
+    color: #fff;
   }
 }

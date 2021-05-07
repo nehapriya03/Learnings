@@ -147,7 +147,7 @@ const AllCaretakerPage = () => {
         </div>
       </div>
 
-      <div uk-grid={""} className={"section"}>
+      <div uk-grid={""} className={"section all-page-grid"}>
         <div className={"uk-width-1-4@l"}>
           <div className={"location-filter-section"}>
             <h6>
@@ -173,7 +173,7 @@ const AllCaretakerPage = () => {
             } else {
               return (
                 <div
-                  className={"uk-child-width-1-3@l uk-grid-match"}
+                  className={"uk-child-width-1-3@l uk-grid-match all-page-grid"}
                   uk-grid={""}
                 >
                   {renderCaretakerCards()}

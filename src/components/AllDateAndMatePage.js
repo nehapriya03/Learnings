@@ -116,7 +116,7 @@ const AllDateAndMatePage = () => {
       return <p className={"not-found-message"}>{fetchMessage.message}</p>;
     }
     return (
-      <div className={"uk-child-width-1-3@l uk-grid-match"} uk-grid={""}>
+      <div className={"uk-child-width-1-3@l uk-grid-match all-page-grid"} uk-grid={""}>
         {petList.map((pet) => {
           locationSet.add(pet.location);
           return (
@@ -180,7 +180,7 @@ const AllDateAndMatePage = () => {
           <h1 className={"hero-heading-text"}>Pets for date</h1>
         </div>
       </div>
-      <div uk-grid={""} className={"section"}>
+      <div uk-grid={""} className={"section all-page-grid"}>
         <div className={"uk-width-1-4@l"}>
           <div className={"location-filter-section"}>
             <h6>

@@ -1,5 +1,5 @@
 .hero-section {
-  background: #000;
+  background: #29bb89;
   padding: 10vh;
   min-height: 30vh;
   margin-bottom: 2.5vh;
@@ -79,7 +79,7 @@ h3.reviewer-name {
   border: none;
   border-radius: 7px;
   padding: 10px 20px;
-  background-color: black;
+  background-color: #29bb89;
   color: white;
   font-size: 15px;
   cursor: pointer;
@@ -90,7 +90,7 @@ h3.reviewer-name {
   border: none;
   border-radius: 7px;
   padding: 7px 15px;
-  background-color: black;
+  background-color: #29bb89;
   color: white;
   font-size: 13px;
   cursor: pointer;
@@ -162,7 +162,7 @@ span.user-email {
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: #29bb89;
   text-decoration: none;
   cursor: pointer;
 }
@@ -180,7 +180,7 @@ span.user-email {
 }
 
 .submit-button {
-  background-color: #000;
+  background-color: #29bb89;
   padding: 10px 20px;
   font-family: "Open Sans";
   border: none;
@@ -203,13 +203,13 @@ legend.tab {
 }
 
 legend.tab.active {
-  background-color: #888;
+  background-color: #57d1a6;
   border-radius: 5px;
   color: #fff;
 }
 
 .uk-radio:checked {
-  background-color: #000;
+  background-color: #29bb89;
 }
 
 .uk-radio:active {
@@ -246,9 +246,9 @@ span.contact-span {
 }
 
 @media screen and (max-width: 1200px) {
-  /* .uk-grid > * {
+  .individual-grid > * {
     padding-left: 0;
-  } */
+  }
 
   .all-page-card-section {
     padding-left: 30px;

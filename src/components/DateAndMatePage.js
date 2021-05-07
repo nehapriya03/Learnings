@@ -96,7 +96,7 @@ const DateAndMatePage = (props) => {
       return <span uk-spinner={"ratio: 4.5"} />;
     }
     return (
-      <div uk-grid={""} className={"section"}>
+      <div uk-grid={""} className={"section individual-grid"}>
         <div className={"uk-width-2-5@l"}>
           <img
             src={`/${pet.picturePath}`}

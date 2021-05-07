@@ -117,7 +117,7 @@ const EditReactPage = (props) => {
           </div>
         </div>
         <div className={"section"}>
-          <div className={"pet-card"} uk-grid={""}>
+          <div className={"pet-card individual-grid"} uk-grid={""}>
             <div className={"uk-width-2-5@l"}>
               <div className={"pet-image-box"}>
                 <img

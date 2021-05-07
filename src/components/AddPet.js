@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { AddPetAPI } from "../apis/Pet";
 import "../css/IndividualPage.css";
+import "../css/AllPage.css";
 
 const AddPet = (props) => {
   const { user, userPetList, setUserPetList } = props;
@@ -79,7 +80,7 @@ const AddPet = (props) => {
       <h4 className={"pet-welcome-message"}>
         Tell your pet, we said hi &#128075;&#127997;
       </h4>
-      <div uk-grid={""} className={"pet-card"}>
+      <div uk-grid={""} className={"pet-card individual-grid"}>
         <div className={"uk-width-2-5@l"}>
           <h4>Choose Image:</h4>
           <div

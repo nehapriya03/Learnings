@@ -60,7 +60,7 @@ const UserPetSection = (props) => {
       } else {
         return (
           <div className={"section"}>
-            <div className={"uk-child-width-1-4@l pet-card"} uk-grid={""}>
+            <div className={"uk-child-width-1-4@l pet-card all-page-grid"} uk-grid={""}>
               {(() => {
                 return userPetList.map((pet) => {
                   return (
