@@ -20,6 +20,7 @@ const CaretakerRegistrationForm = (props) => {
   const [about, setAbout] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [picturePath, setPicturePath] = useState("");
+  const [address, setAddress] = useState("");
 
   const history = useHistory();
 
@@ -52,7 +53,8 @@ const CaretakerRegistrationForm = (props) => {
       location === "" ||
       charge === "" ||
       about === "" ||
-      picturePath === ""
+      picturePath === "" ||
+      address === ""
     ) {
       setErrorMessage("Please fill all required fields.");
     }
@@ -65,6 +67,7 @@ const CaretakerRegistrationForm = (props) => {
       chargeDuration,
       about,
       picturePath,
+      address,
     };
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     await AddCaretakerAPI(caretaker)
@@ -120,7 +123,8 @@ const CaretakerRegistrationForm = (props) => {
       <option key={-1} value={""}>
         Select your location
       </option>,
-    ];    for (let i = 0; i < cityArray.length; i++) {
+    ];
+    for (let i = 0; i < cityArray.length; i++) {
       array.push(
         <option key={i} value={cityArray[i]}>
           {cityArray[i]}
@@ -153,6 +157,15 @@ const CaretakerRegistrationForm = (props) => {
             placeholder={"Enter Last Name"}
             onChange={(e) => setLastName(e.target.value)}
             value={lastName}
+          />
+        </div>
+        <div className={"uk-margin"}>
+          <textarea
+            className={"uk-textarea  uk-form-width-large"}
+            rows={"5"}
+            placeholder={"Your Address"}
+            onChange={(e) => setAddress(e.target.value)}
+            value={address}
           />
         </div>
         <div className={"uk-margin"}>

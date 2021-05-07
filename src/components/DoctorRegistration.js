@@ -20,6 +20,7 @@ const DoctorRegistrationForm = (props) => {
   const [about, setAbout] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [picturePath, setPicturePath] = useState("");
+  const [address, setAddress] = useState("");
 
   const history = useHistory();
 
@@ -53,7 +54,8 @@ const DoctorRegistrationForm = (props) => {
       specialty === "" ||
       charge === "" ||
       about === "" ||
-      picturePath === ""
+      picturePath === "" ||
+      address === ""
     ) {
       setErrorMessage("Please fill all required fields.");
     }
@@ -67,6 +69,7 @@ const DoctorRegistrationForm = (props) => {
       chargeDuration,
       about,
       picturePath,
+      address
     };
     let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     await AddDoctorAPI(doctor)
@@ -156,6 +159,15 @@ const DoctorRegistrationForm = (props) => {
             placeholder={"Enter Last Name"}
             onChange={(e) => setLastName(e.target.value)}
             value={lastName}
+          />
+        </div>
+        <div className={"uk-margin"}>
+          <textarea
+            className={"uk-textarea  uk-form-width-large"}
+            rows={"5"}
+            placeholder={"Your Address"}
+            onChange={(e) => setAddress(e.target.value)}
+            value={address}
           />
         </div>
         <div className={"uk-margin"}>

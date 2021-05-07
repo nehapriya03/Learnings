@@ -240,6 +240,11 @@ img.pet-image {
   margin-bottom: 3vh;
 }
 
+span.contact-span {
+  display: block;
+  margin-bottom: 1vh;
+}
+
 @media screen and (max-width: 1200px) {
   /* .uk-grid > * {
     padding-left: 0;

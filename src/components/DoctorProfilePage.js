@@ -228,6 +228,21 @@ const DoctorProfilePage = (props) => {
                 </select>
               </div>
               <div className={"uk-margin"}>
+                <label className={"uk-form-label"}>Your Address:</label>
+                <textarea
+                  className={"uk-textarea"}
+                  rows={5}
+                  value={doctorAfterUpdate.address}
+                  placeholder={"Your address"}
+                  onChange={(e) =>
+                    setDoctorAfterUpdate({
+                      ...doctorAfterUpdate,
+                      address: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className={"uk-margin"}>
                 <label className={"uk-form-label"}>Your location:</label>
                 <select
                   className={"uk-select"}

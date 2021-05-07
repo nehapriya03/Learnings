@@ -111,18 +111,22 @@ const DoctorPage = (props) => {
           <div className={"info-contact"}>
             <h3>Contact details:</h3>
             <div>
-              <span>
+              <span className={"contact-span"}>
                 <span uk-icon={"icon: mail; ratio: 2"} />
                 &nbsp; &nbsp;
                 <a href={`mailto:${doctorUser.email}`}>{doctorUser.email}</a>
               </span>
-              <br />
-              <span>
+              <span className={"contact-span"}>
                 <span uk-icon={"icon: receiver; ratio: 2"} />
                 &nbsp; &nbsp;
                 <a href={`tel:${doctorUser.phoneNumber}`}>
                   {doctorUser.phoneNumber}
                 </a>
+              </span>
+              <span className={"contact-span"}>
+                <span uk-icon={"icon: location; ratio: 2"} />
+                &nbsp; &nbsp;
+                <span>{doctor.address}</span>
               </span>
             </div>
             <hr />

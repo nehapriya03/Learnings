@@ -10,14 +10,25 @@ let locationToSearchSet = new Set();
 const AllNGOPage = () => {
   const [NGOList, setNGOList] = useState([]);
   const [showFilter, setShowFilter] = useState(true);
+  const [fetchMessage, setFetchMessage] = useState({});
 
   const fetchNGOsByLocation = async (locationArray) => {
     await GetNGOsByAvgReviewAPI(locationArray)
       .then(({ data: foundNGOs }) => {
         setNGOList(foundNGOs);
+        setFetchMessage({
+          success: true,
+          message: "NGOs were successfully fetched.",
+        });
       })
       .catch((error) => {
-        console.error(error);
+        if (error.response.status === 404) {
+          setFetchMessage({
+            success: false,
+            message: "404! No NGOs have registered yet.",
+          });
+          setNGOList([]);
+        }
       });
   };
 
@@ -137,9 +148,24 @@ const AllNGOPage = () => {
           </div>
         </div>
         <div className={"uk-width-3-4@l all-page-card-section"}>
-          <div className={"uk-child-width-1-3@l uk-grid-match"} uk-grid={""}>
-            {renderNGOCards()}
-          </div>
+          {(() => {
+            if (Object.keys(fetchMessage).length === 0) {
+              return <span uk-spinner={"ratio: 4.5"} />;
+            } else if (!fetchMessage.success) {
+              return (
+                <p className={"not-found-message"}>{fetchMessage.message}</p>
+              );
+            } else {
+              return (
+                <div
+                  className={"uk-child-width-1-3@l uk-grid-match"}
+                  uk-grid={""}
+                >
+                  {renderNGOCards()}
+                </div>
+              );
+            }
+          })()}
         </div>
       </div>
     </>
