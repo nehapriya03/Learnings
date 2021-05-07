@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { GetDoctorById, UpdateDoctorById } from "../apis/Doctor";
+import { AddQuoteAPI } from "../apis/Quote";
 import "../css/IndividualPage.css";
 
 const DoctorProfilePage = (props) => {
   const { doctorId } = props;
   const [doctor, setDoctor] = useState({});
   const [doctorAfterUpdate, setDoctorAfterUpdate] = useState({});
+  const [quote, setQuote] = useState({});
   const [updateMessage, setUpdateMessage] = useState({});
+  const [quoteAddMessage, setQuoteAddMessage] = useState({});
 
   useEffect(() => {
     const fetchDoctor = async () => {
@@ -73,6 +76,23 @@ const DoctorProfilePage = (props) => {
       .catch((error) => console.error(error));
   };
 
+  const onAddQuoteClick = async (e) => {
+    await AddQuoteAPI({
+      ...quote,
+      type: "Doctor",
+      quotedById: doctor.doctorId,
+    })
+      .then(({ data: addedQuote }) => {
+        setQuoteAddMessage({
+          success: true,
+          message: "Your quote was successfully added!",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const renderDoctorImages = () => {
     let array = [];
     for (let i = 0; i < 6; i++) {
@@ -108,7 +128,7 @@ const DoctorProfilePage = (props) => {
     }
     return (
       <div className={"section"}>
-        <div uk-grid={""} className={"individual-grid"}>
+        <div uk-grid={""}>
           <div className={"uk-width-2-5@l"}>
             <div>
               <img
@@ -125,6 +145,33 @@ const DoctorProfilePage = (props) => {
                 uk-grid={""}
               >
                 {renderDoctorImages()}
+              </div>
+              <div className={"uk-margin"}>
+                <label className={"uk-form-label"}>
+                  Get your quote featured:
+                </label>
+                <textarea
+                  className={"uk-textarea"}
+                  rows={2}
+                  value={quote.quoteString}
+                  onChange={(e) =>
+                    setQuote({ ...quote, quoteString: e.target.value })
+                  }
+                />
+              </div>
+              {Object.keys(quoteAddMessage).length !== 0 &&
+                quoteAddMessage.success && (
+                  <div uk-alert={""} className={"uk-alert-success"}>
+                    <p>{quoteAddMessage.message}</p>
+                  </div>
+                )}
+              <div className={"uk-margin"}>
+                <button
+                  className={"submit-button"}
+                  onClick={(e) => onAddQuoteClick(e)}
+                >
+                  Add Quote
+                </button>
               </div>
             </div>
           </div>

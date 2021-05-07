@@ -11,6 +11,7 @@ const HomePage = React.lazy(() => import("./HomePage"));
 const AboutUs = React.lazy(() => import("./AboutUs"));
 const SignUp = React.lazy(() => import("./SignUp"));
 const Login = React.lazy(() => import("./Login"));
+const FAQPage = React.lazy(() => import("./FAQPage"));
 const AllDoctorPage = React.lazy(() => import("./AllDoctorPage"));
 const DoctorPage = React.lazy(() => import("./DoctorPage"));
 const AllCaretakerPage = React.lazy(() => import("./AllCaretakerPage"));
@@ -41,6 +42,7 @@ const App = () => {
           <Switch>
             <Route path={"/"} exact component={HomePage} />
             <Route path={"/about-us"} component={AboutUs} />
+            <Route path={"/faq"} component={FAQPage} />
             <Route path={"/sign-up"} component={SignUp} />
             <Route
               path={"/login"}

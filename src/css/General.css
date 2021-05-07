@@ -30,3 +30,24 @@
   text-align: center;
   font-weight: 600;
 }
+
+.quote-heading-text {
+  margin: auto;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0 20%;
+  font-weight: 600;
+}
+
+.quote-card {
+  background-color: #29bb89;
+  color: #fff;
+  padding: 3vh 20vw;
+}
+
+.nav-arrow {
+  color: #fff;
+  background-color: #29bb89;
+  padding: auto;
+  border-radius: 100%;
+}

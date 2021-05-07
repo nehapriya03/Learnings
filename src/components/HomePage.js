@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { GetQuoteDataAPI } from "../apis/Quote";
 import "../css/General.css";
 import dog1 from "../assets/dog1.jpg";
 import cat1 from "../assets/cat1.jpg";
@@ -68,10 +69,26 @@ const ngoSlider = () => {
 };
 
 const HomePage = () => {
+  const [doctorQuotes, setDoctorQuotes] = useState([]);
+  const [ngoQuotes, setNgoQuotes] = useState([]);
 
   useEffect(() => {
     document.title = "Welcome to Philozooic";
-  });
+    GetQuoteDataAPI("Doctor")
+      .then(({ data: foundDoctorQuotes }) => {
+        setDoctorQuotes(foundDoctorQuotes);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    GetQuoteDataAPI("NGO")
+      .then(({ data: foundNGOQuotes }) => {
+        setNgoQuotes(foundNGOQuotes);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <>
@@ -341,6 +358,100 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      {doctorQuotes.length > 0 && (
+        <>
+          <h2 className={"quote-heading-text"}>Doctor Quotes</h2>
+          <div
+            className={"uk-position-relative uk-visible-toggle uk-light"}
+            tabIndex={"-1"}
+            uk-slideshow={"max-height: 250; autoplay: true"}
+          >
+            <ul className={"uk-slideshow-items"}>
+              {doctorQuotes.map((doctorQuote, index) => {
+                return (
+                  <li key={doctorQuote.quoteId}>
+                    <div className={"uk-position-cover"} />
+                    <div className={"uk-position-cover"} />
+                    <div
+                      className={
+                        "uk-position-center uk-position-medium uk-text-center"
+                      }
+                    >
+                      <div className={"quote-card"}>
+                        <h2>{doctorQuote.quoteString}</h2>
+                        <p>
+                          - Dr. {doctorQuote?.quotedBy?.[0]?.firstName}{" "}
+                          {doctorQuote?.quotedBy?.[0]?.lastName}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            <div
+              className={
+                "uk-position-center-left uk-position-small uk-hidden-hover nav-arrow"
+              }
+              uk-slidenav-previous={""}
+              uk-slideshow-item={"previous"}
+            />
+            <div
+              className={
+                "uk-position-center-right uk-position-small uk-hidden-hover nav-arrow"
+              }
+              uk-slideshow-item={"next"}
+            />
+          </div>
+        </>
+      )}
+
+      {ngoQuotes.length > 0 && (
+        <>
+          <h2 className={"quote-heading-text"}>NGO Quotes</h2>
+          <div
+            className={"uk-position-relative uk-visible-toggle uk-light"}
+            tabIndex={"-1"}
+            uk-slideshow={"max-height: 250; autoplay: true"}
+          >
+            <ul className={"uk-slideshow-items"}>
+              {ngoQuotes.map((ngoQuote, index) => {
+                return (
+                  <li key={ngoQuote.quoteId}>
+                    <div className={"uk-position-cover"} />
+                    <div className={"uk-position-cover"} />
+                    <div
+                      className={
+                        "uk-position-center uk-position-medium uk-text-center"
+                      }
+                    >
+                      <div className={"quote-card"}>
+                        <h2>{ngoQuote.quoteString}</h2>
+                        <p>- NGO: {ngoQuote?.quotedBy?.[0]?.name}</p>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            <div
+              className={
+                "uk-position-center-left uk-position-small uk-hidden-hover nav-arrow"
+              }
+              href="#"
+              uk-slidenav-previous={""}
+              uk-slideshow-item={"previous"}
+            />
+            <div
+              className={
+                "uk-position-center-right uk-position-small uk-hidden-hover nav-arrow"
+              }
+              uk-slidenav-next={""}
+              uk-slideshow-item={"next"}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 };
