@@ -52,11 +52,15 @@ const EditReactPage = (props) => {
       isEmpty(userPetAfterUpdate.breed) ||
       isEmpty(userPetAfterUpdate.picturePath) ||
       isEmpty(userPetAfterUpdate.mateStatus) ||
-      isEmpty(userPetAfterUpdate.gender)
+      isEmpty(userPetAfterUpdate.gender) ||
+      isEmpty(userPetAfterUpdate.age)
     ) {
       setUpdateMessage({ success: false, message: "Please fill all fields." });
     } else {
-      await UpdatePetByIdAPI(userPet.petId, userPetAfterUpdate)
+      await UpdatePetByIdAPI(userPet.petId, {
+        ...userPetAfterUpdate,
+        age: Number(userPetAfterUpdate.age),
+      })
         .then(({ data: updatedPet }) => {
           console.info(updatedPet);
           setUserPet(updatedPet);
@@ -237,6 +241,22 @@ const EditReactPage = (props) => {
                         setUserPetAfterUpdate({
                           ...userPetAfterUpdate,
                           medicalHistory: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                  <div className={"uk-margin"}>
+                    <label className={"uk-class-label"}>
+                      Age <small>(in years)</small>:
+                    </label>
+                    <input
+                      className={"uk-input"}
+                      type={"number"}
+                      value={userPetAfterUpdate.age}
+                      onChange={(e) =>
+                        setUserPetAfterUpdate({
+                          ...userPetAfterUpdate,
+                          age: e.target.value,
                         })
                       }
                     />

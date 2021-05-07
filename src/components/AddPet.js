@@ -23,11 +23,12 @@ const AddPet = (props) => {
       isEmpty(pet.breed) ||
       isEmpty(pet.picturePath) ||
       isEmpty(pet.mateStatus) ||
-      isEmpty(pet.gender)
+      isEmpty(pet.gender) ||
+      isEmpty(pet.age)
     ) {
       setUpdateMessage({ success: false, message: "Please fill all fields." });
     } else {
-      await AddPetAPI({ ...pet, ownerId: user.userId })
+      await AddPetAPI({ ...pet, ownerId: user.userId, age: Number(pet.age) })
         .then(({ data: addedPet }) => {
           setUserPetList([...userPetList, addedPet]);
           setUpdateMessage({
@@ -170,7 +171,7 @@ const AddPet = (props) => {
               </div>
             </div>
             <div className={"uk-margin"}>
-              <label className={"uk-form-label"}>Medical History</label>
+              <label className={"uk-form-label"}>Medical History:</label>
               <div className={"uk-form-controls"}>
                 <textarea
                   className={"uk-textarea"}
@@ -194,6 +195,17 @@ const AddPet = (props) => {
                   {renderCityOptions()}
                 </select>
               </div>
+            </div>
+            <div className={"uk-margin"}>
+              <label className={"uk-class-label"}>
+                Age <small>(in years)</small>:
+              </label>
+              <input
+                className={"uk-input"}
+                type={"number"}
+                value={pet.age}
+                onChange={(e) => setPet({ ...pet, age: e.target.value })}
+              />
             </div>
             <div className={"uk-margin"}>
               <div className={"uk-form-label"}>Is ready to mate/date?</div>

@@ -6,6 +6,7 @@ import {
   Switch,
 } from "react-router-dom";
 const NavBar = React.lazy(() => import("./NavBar"));
+const Footer = React.lazy(() => import("./Footer"));
 const HomePage = React.lazy(() => import("./HomePage"));
 const AboutUs = React.lazy(() => import("./AboutUs"));
 const SignUp = React.lazy(() => import("./SignUp"));
@@ -73,6 +74,7 @@ const App = () => {
             />
             <Route path={"*"} component={() => <Redirect to={"/"} />} />
           </Switch>
+          <Footer />
         </React.Suspense>
       </div>
     </Router>
