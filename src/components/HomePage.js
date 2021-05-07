@@ -364,7 +364,7 @@ const HomePage = () => {
           <div
             className={"uk-position-relative uk-visible-toggle uk-light"}
             tabIndex={"-1"}
-            uk-slideshow={"max-height: 250; autoplay: true"}
+            uk-slideshow={"ratio: 1:1; autoplay: true"}
           >
             <ul className={"uk-slideshow-items"}>
               {doctorQuotes.map((doctorQuote, index) => {
@@ -378,7 +378,7 @@ const HomePage = () => {
                       }
                     >
                       <div className={"quote-card"}>
-                        <h2>{doctorQuote.quoteString}</h2>
+                        <blockquote>{doctorQuote.quoteString}</blockquote>
                         <p>
                           - Dr. {doctorQuote?.quotedBy?.[0]?.firstName}{" "}
                           {doctorQuote?.quotedBy?.[0]?.lastName}
@@ -412,7 +412,7 @@ const HomePage = () => {
           <div
             className={"uk-position-relative uk-visible-toggle uk-light"}
             tabIndex={"-1"}
-            uk-slideshow={"max-height: 250; autoplay: true"}
+            uk-slideshow={"ratio: 1:1 autoplay: true"}
           >
             <ul className={"uk-slideshow-items"}>
               {ngoQuotes.map((ngoQuote, index) => {
@@ -426,7 +426,7 @@ const HomePage = () => {
                       }
                     >
                       <div className={"quote-card"}>
-                        <h2>{ngoQuote.quoteString}</h2>
+                        <blockquote>{ngoQuote.quoteString}</blockquote>
                         <p>- NGO: {ngoQuote?.quotedBy?.[0]?.name}</p>
                       </div>
                     </div>

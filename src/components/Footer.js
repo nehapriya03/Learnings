@@ -54,21 +54,28 @@ const Footer = () => {
                   class={"uk-icon-button uk-margin-small-right"}
                   uk-icon={"receiver"}
                 />
-                <span className={"contact-info"}>123456789</span>
+                <a className={"contact-info"} href={"tel:7488334705"}>
+                  7488334705
+                </a>
               </div>
               <div className={"contact-div"}>
                 <span
                   class={"uk-icon-button uk-margin-small-right"}
                   uk-icon={"mail"}
                 />
-                <span className={"contact-info"}>support@philozooic.com</span>
+                <a
+                  className={"contact-info"}
+                  href={"mailto:support@philozooic.com"}
+                >
+                  support@philozooic.com
+                </a>
               </div>
               <div className={"contact-div"}>
                 <span
                   class={"uk-icon-button uk-margin-small-right"}
                   uk-icon={"location"}
                 />
-                <span className={"contact-info"}> MG Road, bengaluru</span>
+                <span className={"contact-info"}> Hazaribagh</span>
               </div>
             </div>
           </div>

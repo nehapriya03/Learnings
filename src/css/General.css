@@ -45,6 +45,15 @@
   padding: 3vh 20vw;
 }
 
+.quote-card > blockquote {
+  font-size: large;
+}
+
+.quote-card > p {
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
 .nav-arrow {
   color: #fff;
   background-color: #29bb89;
