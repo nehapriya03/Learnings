@@ -114,12 +114,12 @@ const AddPet = (props) => {
               })()}
             </ul>
             <div
-              class="uk-position-center-left uk-position-small uk-hidden-hover"
+              className={"uk-position-center-left uk-position-small uk-hidden-hover"}
               uk-slidenav-previous={""}
               uk-slider-item="previous"
             />
             <diva
-              class="uk-position-center-right uk-position-small uk-hidden-hover"
+              className={"uk-position-center-right uk-position-small uk-hidden-hover"}
               uk-slidenav-next={""}
               uk-slider-item="next"
             />
@@ -226,7 +226,7 @@ const AddPet = (props) => {
                 <br />
                 <label>
                   <input
-                    class={"uk-radio"}
+                    className={"uk-radio"}
                     type={"radio"}
                     name={"mateStatus"}
                     value={false}
@@ -253,7 +253,7 @@ const AddPet = (props) => {
                 <br />
                 <label>
                   <input
-                    class={"uk-radio"}
+                    className={"uk-radio"}
                     type={"radio"}
                     name={"gender"}
                     value={"Female"}

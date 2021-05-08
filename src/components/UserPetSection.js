@@ -66,14 +66,14 @@ const UserPetSection = (props) => {
                   return (
                     <div key={pet.petId}>
                       <div className={"uk-card uk-card-default"}>
-                        <div class={"uk-card-media-top"}>
+                        <div className={"uk-card-media-top"}>
                           <img
                             src={`/${pet.picturePath}`}
                             alt={`${pet.name}`}
                             title={`${pet.name}`}
                           />
                         </div>
-                        <div class={"uk-card-body card body"}>
+                        <div className={"uk-card-body card body"}>
                           <h3 className={"uk-card-title name"}>{pet.name}</h3>
                           <h6 className={"miscellaneous-info"}>
                             Animal: {pet.animalType}

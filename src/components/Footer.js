@@ -51,7 +51,7 @@ const Footer = () => {
             <div>
               <div className={"contact-div"}>
                 <span
-                  class={"uk-icon-button uk-margin-small-right"}
+                  className={"uk-icon-button uk-margin-small-right"}
                   uk-icon={"receiver"}
                 />
                 <a className={"contact-info"} href={"tel:7488334705"}>
@@ -60,7 +60,7 @@ const Footer = () => {
               </div>
               <div className={"contact-div"}>
                 <span
-                  class={"uk-icon-button uk-margin-small-right"}
+                  className={"uk-icon-button uk-margin-small-right"}
                   uk-icon={"mail"}
                 />
                 <a
@@ -72,10 +72,10 @@ const Footer = () => {
               </div>
               <div className={"contact-div"}>
                 <span
-                  class={"uk-icon-button uk-margin-small-right"}
+                  className={"uk-icon-button uk-margin-small-right"}
                   uk-icon={"location"}
                 />
-                <span className={"contact-info"}> Hazaribagh</span>
+                <span className={"contact-info"}>Hazaribagh</span>
               </div>
             </div>
           </div>
