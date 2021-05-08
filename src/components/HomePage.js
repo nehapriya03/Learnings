@@ -364,7 +364,7 @@ const HomePage = () => {
           <div
             className={"uk-position-relative uk-visible-toggle uk-light"}
             tabIndex={"-1"}
-            uk-slideshow={"ratio: 1:1; autoplay: true"}
+            uk-slideshow={"ratio: 1:1; max-height: 200; autoplay: true"}
           >
             <ul className={"uk-slideshow-items"}>
               {doctorQuotes.map((doctorQuote, index) => {
@@ -412,7 +412,7 @@ const HomePage = () => {
           <div
             className={"uk-position-relative uk-visible-toggle uk-light"}
             tabIndex={"-1"}
-            uk-slideshow={"ratio: 1:1 autoplay: true"}
+            uk-slideshow={"ratio: 1:1; max-height: 200; autoplay: true"}
           >
             <ul className={"uk-slideshow-items"}>
               {ngoQuotes.map((ngoQuote, index) => {

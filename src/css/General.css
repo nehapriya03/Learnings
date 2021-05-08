@@ -29,6 +29,7 @@
 .heading-text.about {
   text-align: center;
   font-weight: 600;
+  margin-bottom: 8vh;
 }
 
 .quote-heading-text {
@@ -52,6 +53,7 @@
 .quote-card > p {
   font-size: 0.85rem;
   font-style: italic;
+  margin-bottom: 0;
 }
 
 .nav-arrow {
@@ -59,4 +61,18 @@
   background-color: #29bb89;
   padding: auto;
   border-radius: 100%;
+}
+
+.faq-item {
+  padding-bottom: 1vh;
+  border-bottom: 1px solid #29bb89;
+}
+
+.question {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.answer {
+  color: #29bb89;
 }
