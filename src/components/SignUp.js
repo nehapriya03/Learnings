@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../css/Auth.css";
 import { SignUpAPI } from "../apis/Auth";
-import { useHistory } from "react-router-dom";
 import DoctorRegistrationForm from "./DoctorRegistration";
 import CaretakerRegistrationForm from "./CaretakerRegistration";
 import NGORegistrationForm from "./NGORegistration";
